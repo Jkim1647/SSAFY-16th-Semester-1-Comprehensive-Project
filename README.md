@@ -1,94 +1,70 @@
-# EnjoyTrip Java Project
+# SSAFY 16기 1학기 관통 프로젝트
 
-공공데이터를 활용한 관광지 정보 조회 Swing 애플리케이션입니다. XML 관광지 데이터를 파싱해 목록과 상세 정보를 제공하고, 검색/방문 기록/지도 스탬프/심화 정보 조회 기능을 구현했습니다.
+SSAFY 16기 Java Track에서 진행하는 관통 프로젝트를 **하나의 저장소에서 차수별로 기록**합니다. 1차 Java 프로젝트부터 이후 웹, 데이터베이스와 Spring 프로젝트까지 하나의 성장 흐름으로 누적할 예정입니다.
 
-## 실행 방법
+## 프로젝트 목록
 
-### STS/Eclipse
+| 차수 | 프로젝트 | 주제 | 핵심 기술 | 문서 |
+|---:|---|---|---|---|
+| 1차 | EnjoyTrip Java | 공공 관광데이터 조회 및 여행 기록 애플리케이션 | Java, Swing, SAX, MVC | [상세 문서](PROJECT_01_ENJOYTRIP.md) |
+| 2차 | Gwangju Quest | RAG 기반 광주 여행 코스·현장 Quest 챗봇 | FastAPI, OpenAI API, LangChain, ChromaDB, Vanilla JS | [프로젝트 폴더](projects/02-gwangju-quest-chatbot/) |
 
-1. `File > Open Projects from File System...` 선택
-2. 프로젝트 폴더 `EnjoyTrip_Codex_0730` 선택
-3. `src/com/ssafy/trip/Main.java` 실행
-4. `Run As > Java Application`
-
-### 배치 파일
-
-프로젝트 루트의 `RunEnjoyTrip.bat`을 더블클릭합니다.
-
-### 명령어
-
-```powershell
-cd EnjoyTrip_Codex_0730
-java -cp bin com.ssafy.trip.Main
-```
-
-## 구현 기능
-
-| 요구사항 | 기능 | 구현 내용 |
-| --- | --- | --- |
-| F101 | 관광지 정보 조회 | XML 관광지 데이터를 SAX로 파싱하고 Swing JTable에 목록 표시 |
-| F102 | 관광지 정보 조건 검색 | 관광지명/주소 조건으로 목록 검색 |
-| F103 | 관광지 정보 상세 조회 | 관광지 목록 행 클릭 시 왼쪽 상세 정보와 이미지 표시 |
-| F104 | 지역 축제 정보 조회 | 선택 관광지 주소 기반 지역 축제 정보 팝업 표시 |
-| F105 | 주변 상권 정보 조회 | 선택 관광지 주소 기반 주변 상권 정보 팝업 표시 |
-| F106 | 관광지 날씨 | 시작일/종료일 입력 후 기간별 날씨 표 표시 |
-| F107 | 관광지 사진 | 관광지/지역 기준 추천 사진 갤러리 표시 |
-| F108 | 일출/일몰시각 | 선택 관광지 좌표 또는 주소 기반 대표 좌표로 일출/일몰 계산 |
-| F109 | 전기자동차 충전소 | 관광지 주변 전기차 충전소 위치와 충전 상태 표시 |
-| 추가 | 방문 체크와 지도 스탬프 | 다녀온 곳 체크 시 지도에 스탬프 표시 및 파일 저장 |
-| 추가 | 지도 상호작용 | 스탬프 클릭 시 상세 조회, 마우스 휠 확대/축소, 드래그 이동 |
-
-## 주요 사용 방법
-
-- 오른쪽 관광지 목록에서 행을 클릭하면 왼쪽에 상세 정보가 표시됩니다.
-- 상단 검색 조건에서 `관광지명` 또는 `주소`를 선택하고 검색어를 입력하면 목록이 필터링됩니다.
-- 왼쪽 상세 정보의 `다녀온 곳`을 체크하면 오른쪽 지도에 방문 스탬프가 표시됩니다.
-- 지도 스탬프를 클릭하면 해당 관광지 상세 정보로 이동합니다.
-- 지도에서 마우스 휠을 사용하면 확대/축소되고, 확대된 상태에서 드래그로 지도를 이동할 수 있습니다.
-- `지역 축제`, `상권 조회`, `일출/일몰`, `기간 날씨`, `추천 사진`, `충전소` 버튼으로 추가 정보를 조회합니다.
-
-## 주요 클래스
-
-| 클래스 | 역할 |
-| --- | --- |
-| `com.ssafy.trip.Main` | 프로그램 시작점 |
-| `com.ssafy.trip.view.TripInfoView` | Swing 화면 구성과 이벤트 처리 |
-| `com.ssafy.trip.model.dto.TripDto` | 관광지 상세 정보 DTO |
-| `com.ssafy.trip.model.dto.TripSearchDto` | 관광지 검색 조건 DTO |
-| `com.ssafy.trip.model.service.TripServiceImpl` | 서비스 계층 구현 |
-| `com.ssafy.trip.model.dao.TripDaoImpl` | 관광지 목록/상세 조회 DAO |
-| `com.ssafy.trip.util.TouristDestinationSAXParser` | XML 파일 로딩 |
-| `com.ssafy.trip.util.TouristDestinationSAXHandler` | XML 관광지 데이터 파싱 |
-
-## 데이터 및 리소스
-
-| 파일 | 내용 |
-| --- | --- |
-| `res/전국관광지정보표준데이터.xml` | 관광지 원본 XML 데이터 |
-| `res/지역축제정보.csv` | 지역 축제 샘플 데이터 |
-| `res/상권정보.csv` | 주변 상권 샘플 데이터 |
-| `res/관광지날씨.csv` | 기간별 날씨 계산용 지역 프로필 |
-| `res/추천사진.csv` | 추천 사진 매핑 데이터 |
-| `res/전기차충전소.csv` | 전기차 충전소 위치/상태 데이터 |
-| `res/visited-trips.txt` | 방문 체크 저장 파일 |
-| `img/korea_map.png` | 방문 스탬프용 한국 지도 이미지 |
-| `img/image01.jpg` ~ `img/image11.jpg` | 관광지 및 추천 사진 이미지 |
-
-## 구현 포인트
-
-- 검색 버튼 이벤트는 Lambda 표현식으로 등록했습니다.
-- SAX Parser/Handler를 사용해 XML 관광지 데이터를 Java 객체로 변환합니다.
-- MVC 흐름에 맞춰 View -> Service -> DAO 구조로 관광지 정보를 조회합니다.
-- 상세 이미지가 잘리지 않도록 전용 이미지 패널에서 원본 비율을 유지해 렌더링합니다.
-- 방문 기록은 `res/visited-trips.txt`에 저장해 재실행 후에도 유지합니다.
-- 지도 이미지는 오프라인에서도 보이도록 프로젝트 내부 리소스로 포함했습니다.
-
-## 검증 결과
-
-- 전체 Java 소스 컴파일 성공
-- 관광지 XML 로딩 확인
-- 전체 목록 조회, 관광지명 검색, 주소 검색, 상세 조회 스모크 테스트 통과
+## 진행 흐름
 
 ```text
-total=735, first=만리포 관광지, nameMatches=1, addressMatches=24
+1차 Java 관광 데이터 처리
+  └─ XML/CSV 파싱, MVC, Swing UI
+      ↓
+2차 생성형 AI 여행 챗봇
+  └─ REST API, RAG, 문서 업로드, Quest·XP 웹 UI
+      ↓
+향후 관통 프로젝트
+  └─ projects/03-..., projects/04-... 형태로 계속 추가
 ```
+
+## 2차 프로젝트 미리보기
+
+### RAG 기반 맞춤 여행 코스
+
+![Gwangju Quest RAG 대화](projects/02-gwangju-quest-chatbot/screenshots/gwangju-quest-rag-conversation.png)
+
+사용자의 동행인, 시간, 취향과 걷기 선호를 대화에서 추출하고 광주 여행 문서를 검색해 맞춤 코스와 Quest를 생성합니다. 검색에 사용한 문서명도 답변의 출처로 표시합니다.
+
+### Quest 완료와 XP 반영
+
+![Gwangju Quest 완료 화면](projects/02-gwangju-quest-chatbot/screenshots/gwangju-quest-complete-xp.png)
+
+Quest 완료 시 XP와 완료 횟수가 즉시 반영되며, Quest ID를 기준으로 중복 완료를 방지합니다.
+
+## 저장소 구조
+
+```text
+.
+├─ EnjoyTrip_source_code/               # 1차 Java 구현 소스
+├─ EnjoyTrip_demo_video_with_subtitles/ # 1차 실행 영상
+├─ execution_screenshots/               # 1차 실행 화면
+├─ PROJECT_01_ENJOYTRIP.md               # 1차 상세 설명
+├─ projects/
+│  ├─ README.md                          # 차수별 폴더 규칙
+│  └─ 02-gwangju-quest-chatbot/          # 2차 전체 제출물
+│     ├─ clients/                        # 웹 UI
+│     ├─ servers/                        # FastAPI·RAG 서버와 평가 결과
+│     ├─ screenshots/                    # 실제 실행 화면
+│     ├─ README.md                       # 실행 방법 및 기능 설명
+│     └─ REFLECTION_REPORT.md            # 고찰 보고서
+└─ README.md
+```
+
+## 차수별 기록 원칙
+
+- 새 프로젝트는 `projects/차수-프로젝트명/`에 독립적으로 추가합니다.
+- 각 프로젝트에는 실행 방법, 주요 기능, 폴더 구조와 실행 화면을 포함한 `README.md`를 둡니다.
+- 별도 고찰·평가 결과가 있으면 프로젝트 폴더 안에 함께 보관합니다.
+- API 키, `.env`, 가상환경, 빌드 결과와 로컬 벡터 DB는 커밋하지 않습니다.
+
+## 바로가기
+
+- [1차 EnjoyTrip 상세 문서](PROJECT_01_ENJOYTRIP.md)
+- [2차 Gwangju Quest 실행 방법과 기능](projects/02-gwangju-quest-chatbot/README.md)
+- [2차 고찰 보고서](projects/02-gwangju-quest-chatbot/REFLECTION_REPORT.md)
+- [2차 구현 및 개선 기록](projects/02-gwangju-quest-chatbot/PROGRESS_AND_NEXT_STEPS.md)

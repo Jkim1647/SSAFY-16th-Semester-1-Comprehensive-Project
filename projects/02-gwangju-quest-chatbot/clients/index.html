@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gwangju Quest</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand-mark">GQ</div>
+        <div>
+          <h1>GWANGJU QUEST</h1>
+          <p>EXPLORE · PLAY · CONNECT</p>
+        </div>
+        <div class="server-state" id="server-state"><span></span> 서버 확인 중</div>
+      </header>
+
+      <section class="game-layout">
+        <aside class="sidebar">
+          <section class="panel player-panel">
+            <div class="panel-label">PLAYER PARTY</div>
+            <div class="player-form">
+              <input id="player-one" maxlength="12" placeholder="플레이어 1" value="진영" />
+              <input id="player-two" maxlength="12" placeholder="플레이어 2" value="민수" />
+              <button id="save-players" class="ghost-button">파티 저장</button>
+            </div>
+            <div class="level-row">
+              <strong id="level-display">LV. 1</strong>
+              <span id="xp-label">0 / 200 XP</span>
+            </div>
+            <div class="xp-track"><div id="xp-bar" class="xp-bar"></div></div>
+            <div class="stat-row">
+              <span>완료 QUEST</span><strong id="quest-count">0</strong>
+            </div>
+          </section>
+
+          <section class="panel trip-profile-panel">
+            <div class="panel-label">TRIP PROFILE</div>
+            <div id="trip-profile-content" class="trip-profile-content">
+              <span class="profile-empty">아직 파악 중</span>
+            </div>
+          </section>
+
+          <section class="panel quest-panel">
+            <div class="panel-label">CURRENT QUEST</div>
+            <span id="quest-difficulty" class="difficulty">NORMAL · 100 XP</span>
+            <h2 id="quest-title">취향 탐색</h2>
+            <div id="quest-location" class="quest-location">광주</div>
+            <p id="quest-description">서로 가고 싶은 광주 장소를 하나씩 고르고 이유를 말해보세요.</p>
+            <button id="complete-quest" class="primary-button">MISSION COMPLETE</button>
+          </section>
+
+          <section class="panel secret-panel">
+            <div class="panel-label">SECRET QUEST</div>
+            <button id="secret-toggle" class="secret-card" aria-expanded="false">
+              <span>탭해서 비밀 미션 확인</span>
+              <strong id="secret-quest-one">파티를 저장하면 생성됩니다.</strong>
+              <strong id="secret-quest-two"></strong>
+            </button>
+          </section>
+        </aside>
+
+        <section class="chat-panel">
+          <div class="chat-toolbar">
+            <div><strong>QUEST MASTER</strong><span>광주 여행을 함께 설계해요</span></div>
+            <div class="toolbar-actions">
+              <label class="rag-switch"><input type="checkbox" id="rag-toggle" checked /><span></span>RAG</label>
+              <button id="upload-toggle" class="icon-button" aria-expanded="false">문서 추가</button>
+            </div>
+          </div>
+
+          <div id="upload-panel" class="upload-panel" hidden>
+            <div>
+              <strong>광주 여행 자료 추가</strong>
+              <small>txt, md, pdf · 업로드한 자료는 다음 질문부터 검색됩니다.</small>
+            </div>
+            <input id="document-file" type="file" accept=".txt,.md,.pdf" />
+            <button id="upload-button" class="ghost-button">업로드</button>
+          </div>
+
+          <div id="chat-window" class="chat-window" aria-live="polite">
+            <article class="message bot">
+              <div class="avatar">Q</div>
+              <div class="bubble"><span class="speaker">QUEST MASTER</span>안녕하세요! 몇 명이서, 누구와, 몇 시간 동안 광주를 여행할 예정인가요? 좋아하는 것도 함께 알려주세요.</div>
+            </article>
+          </div>
+
+          <form id="chat-form" class="input-area">
+            <input id="user-input" autocomplete="off" maxlength="4000" placeholder="예: 친구랑 4시간, 카페와 사진을 좋아해" />
+            <button id="send-button" type="submit" class="send-button" aria-label="메시지 전송">전송</button>
+          </form>
+        </section>
+      </section>
+    </main>
+    <div id="toast" class="toast" role="status"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
