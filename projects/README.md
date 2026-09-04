@@ -11,6 +11,7 @@
 예시:
 
 ```text
+01-enjoytrip-java
 02-gwangju-quest-chatbot
 03-enjoytrip-database
 04-enjoytrip-spring

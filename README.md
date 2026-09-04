@@ -6,7 +6,7 @@ SSAFY 16기 Java Track에서 진행하는 관통 프로젝트를 **하나의 저
 
 | 차수 | 프로젝트 | 주제 | 핵심 기술 | 문서 |
 |---:|---|---|---|---|
-| 1차 | EnjoyTrip Java | 공공 관광데이터 조회 및 여행 기록 애플리케이션 | Java, Swing, SAX, MVC | [상세 문서](PROJECT_01_ENJOYTRIP.md) |
+| 1차 | EnjoyTrip Java | 공공 관광데이터 조회 및 여행 기록 애플리케이션 | Java, Swing, SAX, MVC | [프로젝트 폴더](projects/01-enjoytrip-java/) |
 | 2차 | Gwangju Quest | RAG 기반 광주 여행 코스·현장 Quest 챗봇 | FastAPI, OpenAI API, LangChain, ChromaDB, Vanilla JS | [프로젝트 폴더](projects/02-gwangju-quest-chatbot/) |
 
 ## 진행 흐름
@@ -40,12 +40,12 @@ Quest 완료 시 XP와 완료 횟수가 즉시 반영되며, Quest ID를 기준�
 
 ```text
 .
-├─ EnjoyTrip_source_code/               # 1차 Java 구현 소스
-├─ EnjoyTrip_demo_video_with_subtitles/ # 1차 실행 영상
-├─ execution_screenshots/               # 1차 실행 화면
-├─ PROJECT_01_ENJOYTRIP.md               # 1차 상세 설명
 ├─ projects/
 │  ├─ README.md                          # 차수별 폴더 규칙
+│  ├─ 01-enjoytrip-java/                 # 1차 전체 제출물
+│  │  ├─ EnjoyTrip_source_code/          # Java 구현 소스
+│  │  ├─ execution_screenshots/          # 실제 실행 화면
+│  │  └─ README.md                       # 실행 방법 및 기능 설명
 │  └─ 02-gwangju-quest-chatbot/          # 2차 전체 제출물
 │     ├─ clients/                        # 웹 UI
 │     ├─ servers/                        # FastAPI·RAG 서버와 평가 결과
@@ -64,7 +64,7 @@ Quest 완료 시 XP와 완료 횟수가 즉시 반영되며, Quest ID를 기준�
 
 ## 바로가기
 
-- [1차 EnjoyTrip 상세 문서](PROJECT_01_ENJOYTRIP.md)
+- [1차 EnjoyTrip 실행 방법과 기능](projects/01-enjoytrip-java/README.md)
 - [2차 Gwangju Quest 실행 방법과 기능](projects/02-gwangju-quest-chatbot/README.md)
 - [2차 고찰 보고서](projects/02-gwangju-quest-chatbot/REFLECTION_REPORT.md)
 - [2차 구현 및 개선 기록](projects/02-gwangju-quest-chatbot/PROGRESS_AND_NEXT_STEPS.md)

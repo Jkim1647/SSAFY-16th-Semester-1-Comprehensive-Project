@@ -2,6 +2,27 @@
 
 공공데이터를 활용한 관광지 정보 조회 Swing 애플리케이션입니다. XML 관광지 데이터를 파싱해 목록과 상세 정보를 제공하고, 검색/방문 기록/지도 스탬프/심화 정보 조회 기능을 구현했습니다.
 
+- 원본 팀 저장소: [SSAFY GitLab - Trip_Java_Gwangju_03](https://lab.ssafy.com/hno130/trip_java_gwangju_03/-/tree/824215d7d1ae35163f9fdc03d8aaddd484aeabb2/)
+- 진행 차수: 1차 관통 프로젝트
+
+## 실행 화면
+
+### 메인 화면과 관광지 상세 조회
+
+![EnjoyTrip 메인 화면](execution_screenshots/01_main.png)
+
+### 주소 조건 검색
+
+![EnjoyTrip 주소 검색](execution_screenshots/02_search_address.png)
+
+### 방문 기록과 지도 스탬프
+
+![EnjoyTrip 방문 스탬프 지도](execution_screenshots/03_visited_stamp_map.png)
+
+### 추천 사진 팝업
+
+![EnjoyTrip 추천 사진](execution_screenshots/04_photo_popup.png)
+
 ## 실행 방법
 
 ### STS/Eclipse
