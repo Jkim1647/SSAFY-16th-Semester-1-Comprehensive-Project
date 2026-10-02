@@ -1,0 +1,9 @@
+{
+  "name": "enjoytrip-ev",
+  "private": true,
+  "description": "SSAFY 16기 광주 3반 관통 프로젝트 (Web Front) - EnjoyTrip EV",
+  "type": "module",
+  "scripts": {
+    "env": "node scripts/env.mjs"
+  }
+}

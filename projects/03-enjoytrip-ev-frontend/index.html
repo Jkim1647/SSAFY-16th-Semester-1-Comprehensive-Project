@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EnjoyTrip EV · 충전 걱정 없는 드라이브 여행</title>
+    <meta name="description" content="전국 관광지와 전기차 충전소를 한 지도에서 보고 드라이브 여행을 계획하세요." />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header id="app-header"></header>
+
+    <main>
+      <section class="hero py-5">
+        <div class="container py-lg-4">
+          <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+              <p class="text-primary fw-semibold mb-2">전기차 드라이브 여행 플래너</p>
+              <h1 class="display-5 mb-3">가고 싶은 곳부터 고르세요.<br /><em>충전은 동선에 맞춰</em> 챙겨 드릴게요.</h1>
+              <p class="lead text-body-secondary mb-0">
+                한국관광공사 관광 정보로 여행지를 찾고, 지도 위에서 하루 동선을 짜 보세요.
+              </p>
+            </div>
+            <div class="col-lg-6">
+              <form class="quick-search p-4" action="attraction.html" method="get" role="search" aria-labelledby="qs-title">
+                <h2 id="qs-title" class="h6 fw-bold mb-3">어디로 떠나볼까요?</h2>
+                <div class="mb-3">
+                  <label for="qs-keyword" class="form-label small text-body-secondary">관광지 이름</label>
+                  <input id="qs-keyword" name="keyword" class="form-control" placeholder="예: 죽녹원, 양림동" maxlength="30" />
+                </div>
+                <div class="row g-2 mb-3">
+                  <div class="col-6">
+                    <label for="qs-sido" class="form-label small text-body-secondary">지역</label>
+                    <select id="qs-sido" name="sido" class="form-select">
+                      <option value="">전국</option>
+                    </select>
+                  </div>
+                  <div class="col-6">
+                    <label for="qs-type" class="form-label small text-body-secondary">유형</label>
+                    <select id="qs-type" name="type" class="form-select"></select>
+                  </div>
+                </div>
+                <button class="btn btn-primary w-100 py-2" type="submit">지도에서 찾기</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container py-5" aria-labelledby="how-title">
+        <div class="row g-5">
+          <div class="col-lg-4">
+            <h2 id="how-title" class="h4 fw-bold">이렇게 쓰세요</h2>
+            <p class="text-body-secondary">관광지 조회부터 충전 계획까지 한 흐름으로 이어집니다.</p>
+          </div>
+          <div class="col-lg-8">
+            <ol class="feature-list">
+              <li>
+                <span class="num">01</span>
+                <div><a class="fw-semibold" href="attraction.html">관광지 조회</a>
+                  <p class="text-body-secondary mb-0 small">지역과 유형(관광지·숙박·음식점·문화시설·축제·여행코스·쇼핑)으로 찾고 지도에서 위치를 확인합니다.</p></div>
+              </li>
+              <li>
+                <span class="num">02</span>
+                <div><a class="fw-semibold" href="plan.html">여행 계획</a>
+                  <p class="text-body-secondary mb-0 small">담은 장소의 순서를 끌어서 바꾸면 지도 경로와 이동 거리가 바로 다시 계산됩니다.</p></div>
+              </li>
+              <li>
+                <span class="num">03</span>
+                <div><span class="fw-semibold">경로 위 충전소</span>
+                  <p class="text-body-secondary mb-0 small">동선 주변의 전기차 충전소와 충전기 상태를 함께 보여 줍니다.</p></div>
+              </li>
+              <li>
+                <span class="num">04</span>
+                <div><a class="fw-semibold" href="hotplace.html">핫플레이스 공유</a>
+                  <p class="text-body-secondary mb-0 small">직접 다녀온 숨은 명소를 사진과 함께 지도에 남기고 게시판에서 이야기를 나눕니다.</p></div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="app-footer"></footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="assets/js/core/layout.js"></script>
+    <script type="module" src="assets/js/pages/index.js"></script>
+  </body>
+</html>

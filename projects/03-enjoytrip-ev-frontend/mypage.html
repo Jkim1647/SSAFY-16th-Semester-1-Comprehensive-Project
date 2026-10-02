@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>마이페이지 · EnjoyTrip EV</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header id="app-header"></header>
+
+    <main class="auth-wrap" style="max-width: 560px">
+      <h1 class="mb-4">마이페이지</h1>
+
+      <!-- 조회 -->
+      <section id="view-section" aria-labelledby="view-title">
+        <h2 id="view-title" class="h6 fw-bold text-body-secondary">회원 정보</h2>
+        <dl class="row border-top border-bottom py-3 mx-0 mb-3">
+          <dt class="col-4 text-body-secondary fw-normal">아이디</dt><dd class="col-8" id="v-id"></dd>
+          <dt class="col-4 text-body-secondary fw-normal">이름</dt><dd class="col-8" id="v-name"></dd>
+          <dt class="col-4 text-body-secondary fw-normal">이메일</dt><dd class="col-8" id="v-email"></dd>
+          <dt class="col-4 text-body-secondary fw-normal mb-0">가입일</dt><dd class="col-8 mb-0" id="v-created"></dd>
+        </dl>
+        <div class="d-flex gap-2">
+          <button id="btn-edit" class="btn btn-primary flex-fill" type="button">정보 수정</button>
+          <button class="btn btn-outline-danger" type="button" data-bs-toggle="modal" data-bs-target="#withdraw-modal">회원 탈퇴</button>
+        </div>
+      </section>
+
+      <!-- 나의 여행 통계 (Chart.js) -->
+      <section id="stats-section" class="mt-5" aria-labelledby="stats-title">
+        <h2 id="stats-title" class="h6 fw-bold text-body-secondary">나의 여행 통계</h2>
+        <div class="stat-tiles mb-4" id="stat-tiles"></div>
+        <div id="stats-body">
+          <h3 class="h6 fw-bold">계획에 담은 장소 유형</h3>
+          <div class="chart-box mb-4"><canvas id="chart-types" role="img" aria-label="계획에 담은 장소 유형 비율"></canvas></div>
+          <h3 class="h6 fw-bold">항목별 예상 경비 (전체 계획 합계)</h3>
+          <div class="chart-box mb-4"><canvas id="chart-expense" role="img" aria-label="항목별 예상 경비"></canvas></div>
+          <h3 class="h6 fw-bold">월별 여행 <span class="fw-normal small text-body-secondary" id="heatmap-year"></span></h3>
+          <div class="heatmap mb-2" id="heatmap"></div>
+          <p class="form-hint">저장한 여행 계획의 출발일 기준입니다.</p>
+        </div>
+      </section>
+
+      <!-- 수정 -->
+      <form id="edit-form" class="d-none" novalidate aria-label="회원 정보 수정">
+        <div class="mb-3">
+          <label for="name" class="form-label">이름</label>
+          <input id="name" class="form-control" maxlength="20" required />
+          <div class="invalid-feedback"></div>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">이메일</label>
+          <input id="email" type="email" class="form-control" required />
+          <div class="invalid-feedback"></div>
+        </div>
+        <hr />
+        <p class="form-hint">비밀번호를 바꾸지 않으려면 아래 칸을 비워 두세요.</p>
+        <div class="mb-3">
+          <label for="new-password" class="form-label">새 비밀번호</label>
+          <input id="new-password" type="password" class="form-control" autocomplete="new-password" maxlength="20" />
+          <div class="invalid-feedback"></div>
+        </div>
+        <div class="mb-3">
+          <label for="current-password" class="form-label">현재 비밀번호 <span class="text-danger">*</span></label>
+          <input id="current-password" type="password" class="form-control" autocomplete="current-password" required />
+          <div class="invalid-feedback"></div>
+        </div>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary flex-fill" type="submit">저장</button>
+          <button id="btn-cancel" class="btn btn-outline-secondary" type="button">취소</button>
+        </div>
+      </form>
+    </main>
+
+    <!-- 탈퇴 확인 모달 -->
+    <div class="modal fade" id="withdraw-modal" tabindex="-1" aria-labelledby="withdraw-title" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <form class="modal-content" id="withdraw-form" novalidate>
+          <div class="modal-header">
+            <h2 class="modal-title h5" id="withdraw-title">회원 탈퇴</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
+          </div>
+          <div class="modal-body">
+            <p class="mb-3">탈퇴하면 저장한 여행 계획과 핫플레이스가 모두 삭제됩니다. 작성한 게시글은 '탈퇴한 회원'으로 남습니다.</p>
+            <label for="withdraw-password" class="form-label">비밀번호 확인</label>
+            <input id="withdraw-password" type="password" class="form-control" autocomplete="current-password" required />
+            <div class="invalid-feedback"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">취소</button>
+            <button type="submit" class="btn btn-danger">탈퇴하기</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <footer id="app-footer"></footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="assets/js/core/layout.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script type="module" src="assets/js/pages/mypage.js"></script>
+  </body>
+</html>

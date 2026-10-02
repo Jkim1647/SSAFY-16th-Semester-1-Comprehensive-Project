@@ -1,0 +1,12 @@
+# 개인 API 키 (.env.example 을 복사해 .env 작성 → npm run env 로 keys.js 생성)
+.env
+assets/js/keys.js
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# 로컬 도구 설정
+.claude/

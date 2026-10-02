@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>핫플레이스 · EnjoyTrip EV</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header id="app-header"></header>
+
+    <main class="app-shell">
+      <section class="app-panel" aria-labelledby="panel-title">
+        <div class="app-panel__head">
+          <div class="d-flex align-items-center mb-3">
+            <h1 id="panel-title" class="h5 fw-bold mb-0 flex-fill">핫플레이스</h1>
+            <button id="btn-open-form" class="btn btn-primary btn-sm" type="button">+ 등록</button>
+          </div>
+          <fieldset>
+            <legend class="visually-hidden">장소 유형</legend>
+            <div id="category-chips" class="chip-row"></div>
+          </fieldset>
+        </div>
+        <div class="app-panel__body">
+          <p id="hp-meta" class="result-meta mb-0" aria-live="polite"></p>
+          <div id="hp-list" class="vstack gap-3 px-3 pb-3"></div>
+        </div>
+      </section>
+
+      <section class="app-map" aria-label="지도">
+        <div id="map" class="map"></div>
+      </section>
+    </main>
+
+    <!-- 등록 폼 (오프캔버스) -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="hp-form-panel" aria-labelledby="hp-form-title" data-bs-backdrop="false" data-bs-scroll="true">
+      <div class="offcanvas-header border-bottom">
+        <h2 class="offcanvas-title h5 fw-bold" id="hp-form-title">핫플레이스 등록</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="닫기"></button>
+      </div>
+      <div class="offcanvas-body">
+        <form id="hp-form" class="vstack gap-3" novalidate>
+          <div>
+            <label for="hp-title" class="form-label">장소 이름 <span class="text-danger">*</span></label>
+            <input id="hp-title" class="form-control" maxlength="40" required placeholder="예: 상무지구 브런치 카페" />
+            <div class="invalid-feedback"></div>
+          </div>
+          <div>
+            <label for="hp-category" class="form-label">장소 유형 <span class="text-danger">*</span></label>
+            <select id="hp-category" class="form-select" required></select>
+            <div class="invalid-feedback"></div>
+          </div>
+          <div>
+            <label for="hp-date" class="form-label">다녀온 날짜 <span class="text-danger">*</span></label>
+            <input id="hp-date" type="date" class="form-control" required />
+            <div class="invalid-feedback"></div>
+          </div>
+          <div>
+            <label for="hp-address" class="form-label">위치 <span class="text-danger">*</span></label>
+            <div class="input-group has-validation">
+              <input id="hp-address" class="form-control" maxlength="80" placeholder="주소 입력 후 찾기, 또는 지도 클릭" />
+              <button class="btn btn-outline-secondary" type="button" id="btn-geocode">찾기</button>
+              <div class="invalid-feedback"></div>
+            </div>
+            <p class="pick-hint text-body-secondary mt-1 mb-0" id="pick-hint" aria-live="polite">지도를 클릭하면 그 위치가 선택됩니다.</p>
+          </div>
+          <div>
+            <label for="hp-photo" class="form-label">사진</label>
+            <input id="hp-photo" type="file" class="form-control" accept="image/*" />
+            <div class="invalid-feedback"></div>
+            <p class="pick-hint text-primary mt-1 mb-0" id="exif-hint" aria-live="polite"></p>
+            <img id="hp-preview" class="img-fluid rounded mt-2 d-none" alt="선택한 사진 미리보기" />
+          </div>
+          <div>
+            <label for="hp-desc" class="form-label">설명</label>
+            <textarea id="hp-desc" class="form-control" rows="4" maxlength="300" placeholder="어떤 점이 좋았나요? 충전 팁도 남겨 주세요."></textarea>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-primary flex-fill" type="submit">등록하기</button>
+            <button class="btn btn-outline-secondary" type="button" data-bs-dismiss="offcanvas">취소</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="assets/js/core/layout.js"></script>
+    <script type="module" src="assets/js/pages/hotplace.js"></script>
+  </body>
+</html>

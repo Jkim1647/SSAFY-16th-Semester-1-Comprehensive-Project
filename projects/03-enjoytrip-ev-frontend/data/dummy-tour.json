@@ -1,0 +1,449 @@
+{
+  "_comment": "API 키가 없을 때 사용하는 더미 데이터. 좌표는 대략값이며 설명은 팀에서 직접 작성한 요약입니다. 사진은 저작권 문제로 포함하지 않습니다. 시도/시군구 코드는 2026-10 실제 ldongCode2 응답(광주·전남 → 12 전남광주통합특별시)에 맞췄습니다.",
+  "sido": [
+    {
+      "code": "11",
+      "name": "서울특별시"
+    },
+    {
+      "code": "12",
+      "name": "전남광주통합특별시"
+    },
+    {
+      "code": "26",
+      "name": "부산광역시"
+    },
+    {
+      "code": "27",
+      "name": "대구광역시"
+    },
+    {
+      "code": "28",
+      "name": "인천광역시"
+    },
+    {
+      "code": "30",
+      "name": "대전광역시"
+    },
+    {
+      "code": "31",
+      "name": "울산광역시"
+    },
+    {
+      "code": "36",
+      "name": "세종특별자치시"
+    },
+    {
+      "code": "41",
+      "name": "경기도"
+    },
+    {
+      "code": "43",
+      "name": "충청북도"
+    },
+    {
+      "code": "44",
+      "name": "충청남도"
+    },
+    {
+      "code": "47",
+      "name": "경상북도"
+    },
+    {
+      "code": "48",
+      "name": "경상남도"
+    },
+    {
+      "code": "50",
+      "name": "제주특별자치도"
+    },
+    {
+      "code": "51",
+      "name": "강원특별자치도"
+    },
+    {
+      "code": "52",
+      "name": "전북특별자치도"
+    }
+  ],
+  "gugun": {
+    "11": [
+      {
+        "code": "110",
+        "name": "종로구"
+      },
+      {
+        "code": "140",
+        "name": "중구"
+      },
+      {
+        "code": "170",
+        "name": "용산구"
+      },
+      {
+        "code": "680",
+        "name": "강남구"
+      }
+    ],
+    "12": [
+      {
+        "code": "130",
+        "name": "여수시"
+      },
+      {
+        "code": "150",
+        "name": "순천시"
+      },
+      {
+        "code": "210",
+        "name": "동구"
+      },
+      {
+        "code": "240",
+        "name": "서구"
+      },
+      {
+        "code": "270",
+        "name": "남구"
+      },
+      {
+        "code": "300",
+        "name": "북구"
+      },
+      {
+        "code": "330",
+        "name": "광산구"
+      },
+      {
+        "code": "710",
+        "name": "담양군"
+      }
+    ]
+  },
+  "spots": [
+    {
+      "contentid": "d-29-01",
+      "contenttypeid": "14",
+      "title": "국립아시아문화전당",
+      "addr1": "전남광주통합특별시 동구 문화전당로 38",
+      "mapx": "126.9199",
+      "mapy": "35.1467",
+      "lDongRegnCd": "12",
+      "lDongSignguCd": "210",
+      "tel": "1899-5566",
+      "overview": "옛 전남도청 일원에 들어선 복합 문화 공간. 전시·공연·도서관을 한 곳에서 즐길 수 있다."
+    },
+    {
+      "contentid": "d-29-02",
+      "contenttypeid": "12",
+      "title": "무등산국립공원 (증심사지구)",
+      "addr1": "전남광주통합특별시 동구 증심사길",
+      "mapx": "126.9888",
+      "mapy": "35.1342",
+      "lDongRegnCd": "12",
+      "lDongSignguCd": "210",
+      "tel": "",
+      "overview": "광주를 대표하는 산. 증심사 계곡 코스는 초보자도 걷기 좋다."
+    },
+    {
+      "contentid": "d-29-03",
+      "contenttypeid": "12",
+      "title": "양림동 역사문화마을",
+      "addr1": "전남광주통합특별시 남구 양림동",
+      "mapx": "126.9157",
+      "mapy": "35.1389",
+      "lDongRegnCd": "12",
+      "lDongSignguCd": "270",
+      "tel": "",
+      "overview": "근대 선교사 사택과 골목 예술이 어우러진 산책 코스."
+    },
+    {
+      "contentid": "d-29-04",
+      "contenttypeid": "12",
+      "title": "펭귄마을",
+      "addr1": "전남광주통합특별시 남구 천변좌로446번길 7",
+      "mapx": "126.9138",
+      "mapy": "35.1403",
+      "lDongRegnCd": "12",
+      "lDongSignguCd": "270",
+      "tel": "",
+      "overview": "버려진 물건으로 꾸민 정크아트 골목. 양림동과 함께 둘러보기 좋다."
+    },
+    {
+      "contentid": "d-29-05",
+      "contenttypeid": "38",
+      "title": "1913송정역시장",
+      "addr1": "전남광주통합특별시 광산구 송정로8번길 13",
+      "mapx": "126.7930",
+      "mapy": "35.1393",
+      "lDongRegnCd": "12",
+      "lDongSignguCd": "330",
+      "tel": "",
+      "overview": "100년 넘은 전통시장을 청년 상인들이 새로 꾸민 먹거리 시장. 광주송정역 바로 앞."
+    },
+    {
+      "contentid": "d-29-06",
+      "contenttypeid": "12",
+      "title": "5·18기념공원",
+      "addr1": "전남광주통합특별시 서구 상무민주로 61",
+      "mapx": "126.8492",
+      "mapy": "35.1523",
+      "lDongRegnCd": "12",
+      "lDongSignguCd": "240",
+      "tel": "",
+      "overview": "5·18 민주화운동을 기리는 도심 공원. 산책로와 기념 조형물이 있다."
+    },
+    {
+      "contentid": "d-29-07",
+      "contenttypeid": "14",
+      "title": "광주시립미술관",
+      "addr1": "전남광주통합특별시 북구 하서로 52",
+      "mapx": "126.8889",
+      "mapy": "35.1830",
+      "lDongRegnCd": "12",
+      "lDongSignguCd": "300",
+      "tel": "",
+      "overview": "중외공원 안의 시립 미술관. 비엔날레 전시관과 이웃해 있다."
+    },
+    {
+      "contentid": "d-29-08",
+      "contenttypeid": "14",
+      "title": "국립광주박물관",
+      "addr1": "전남광주통합특별시 북구 하서로 110",
+      "mapx": "126.8826",
+      "mapy": "35.1893",
+      "lDongRegnCd": "12",
+      "lDongSignguCd": "300",
+      "tel": "",
+      "overview": "호남 지역의 역사·문화 유물을 전시하는 국립 박물관."
+    },
+    {
+      "contentid": "d-29-09",
+      "contenttypeid": "15",
+      "title": "광주비엔날레",
+      "addr1": "전남광주통합특별시 북구 비엔날레로 111",
+      "mapx": "126.8893",
+      "mapy": "35.1823",
+      "lDongRegnCd": "12",
+      "lDongSignguCd": "300",
+      "tel": "",
+      "overview": "격년으로 열리는 국제 현대미술 전시 행사."
+    },
+    {
+      "contentid": "d-29-10",
+      "contenttypeid": "12",
+      "title": "광주패밀리랜드",
+      "addr1": "전남광주통합특별시 북구 우치로 677",
+      "mapx": "126.8869",
+      "mapy": "35.2257",
+      "lDongRegnCd": "12",
+      "lDongSignguCd": "300",
+      "tel": "",
+      "overview": "우치공원 안의 놀이공원. 동물원과 함께 가족 나들이 코스."
+    },
+    {
+      "contentid": "d-29-11",
+      "contenttypeid": "38",
+      "title": "충장로 상점가",
+      "addr1": "전남광주통합특별시 동구 충장로",
+      "mapx": "126.9159",
+      "mapy": "35.1487",
+      "lDongRegnCd": "12",
+      "lDongSignguCd": "210",
+      "tel": "",
+      "overview": "광주 원도심의 대표 쇼핑 거리."
+    },
+    {
+      "contentid": "d-29-12",
+      "contenttypeid": "39",
+      "title": "송정 떡갈비 거리",
+      "addr1": "전남광주통합특별시 광산구 송정동",
+      "mapx": "126.7928",
+      "mapy": "35.1386",
+      "lDongRegnCd": "12",
+      "lDongSignguCd": "330",
+      "tel": "",
+      "overview": "광주 대표 먹거리 떡갈비 식당이 모여 있는 거리."
+    },
+    {
+      "contentid": "d-29-13",
+      "contenttypeid": "39",
+      "title": "오리탕 거리",
+      "addr1": "전남광주통합특별시 북구 경양로",
+      "mapx": "126.9152",
+      "mapy": "35.1655",
+      "lDongRegnCd": "12",
+      "lDongSignguCd": "300",
+      "tel": "",
+      "overview": "들깨를 듬뿍 넣은 광주식 오리탕 식당 골목."
+    },
+    {
+      "contentid": "d-29-14",
+      "contenttypeid": "32",
+      "title": "상무지구 호텔 (예시)",
+      "addr1": "전남광주통합특별시 서구 상무누리로 55",
+      "mapx": "126.8406",
+      "mapy": "35.1471",
+      "lDongRegnCd": "12",
+      "lDongSignguCd": "240",
+      "tel": "",
+      "overview": "김대중컨벤션센터 인근 숙박 예시 데이터."
+    },
+    {
+      "contentid": "d-29-15",
+      "contenttypeid": "28",
+      "title": "영산강 자전거길 (광주 구간)",
+      "addr1": "전남광주통합특별시 서구 치평동",
+      "mapx": "126.8350",
+      "mapy": "35.1560",
+      "lDongRegnCd": "12",
+      "lDongSignguCd": "240",
+      "tel": "",
+      "overview": "영산강을 따라 이어지는 평탄한 자전거 코스."
+    },
+    {
+      "contentid": "d-29-16",
+      "contenttypeid": "25",
+      "title": "광주 근대역사 걷기 코스",
+      "addr1": "전남광주통합특별시 남구 양림동",
+      "mapx": "126.9170",
+      "mapy": "35.1380",
+      "lDongRegnCd": "12",
+      "lDongSignguCd": "270",
+      "tel": "",
+      "overview": "양림동 → 펭귄마을 → 국립아시아문화전당으로 이어지는 반나절 도보 코스."
+    },
+    {
+      "contentid": "d-46-01",
+      "contenttypeid": "12",
+      "title": "담양 죽녹원",
+      "addr1": "전남광주통합특별시 담양군 담양읍 죽녹원로 119",
+      "mapx": "126.9842",
+      "mapy": "35.3253",
+      "lDongRegnCd": "12",
+      "lDongSignguCd": "710",
+      "tel": "",
+      "overview": "울창한 대나무 숲 산책로. 광주에서 차로 40분 거리."
+    },
+    {
+      "contentid": "d-46-02",
+      "contenttypeid": "12",
+      "title": "순천만습지",
+      "addr1": "전남광주통합특별시 순천시 순천만길 513-25",
+      "mapx": "127.5093",
+      "mapy": "34.8862",
+      "lDongRegnCd": "12",
+      "lDongSignguCd": "150",
+      "tel": "",
+      "overview": "갈대밭과 갯벌이 펼쳐진 연안 습지. 일몰 풍경이 유명하다."
+    },
+    {
+      "contentid": "d-46-03",
+      "contenttypeid": "12",
+      "title": "여수 오동도",
+      "addr1": "전남광주통합특별시 여수시 오동도로 222",
+      "mapx": "127.7660",
+      "mapy": "34.7454",
+      "lDongRegnCd": "12",
+      "lDongSignguCd": "130",
+      "tel": "",
+      "overview": "방파제로 연결된 동백섬. 봄철 동백꽃이 장관이다."
+    },
+    {
+      "contentid": "d-11-01",
+      "contenttypeid": "12",
+      "title": "경복궁",
+      "addr1": "서울특별시 종로구 사직로 161",
+      "mapx": "126.9770",
+      "mapy": "37.5796",
+      "lDongRegnCd": "11",
+      "lDongSignguCd": "110",
+      "tel": "",
+      "overview": "조선의 법궁. 수문장 교대식이 볼거리다."
+    },
+    {
+      "contentid": "d-11-02",
+      "contenttypeid": "12",
+      "title": "북촌한옥마을",
+      "addr1": "서울특별시 종로구 계동길",
+      "mapx": "126.9850",
+      "mapy": "37.5826",
+      "lDongRegnCd": "11",
+      "lDongSignguCd": "110",
+      "tel": "",
+      "overview": "전통 한옥이 밀집한 주거 지역. 주민 생활 공간이므로 조용히 관람한다."
+    },
+    {
+      "contentid": "d-11-03",
+      "contenttypeid": "12",
+      "title": "남산서울타워",
+      "addr1": "서울특별시 용산구 남산공원길 105",
+      "mapx": "126.9882",
+      "mapy": "37.5512",
+      "lDongRegnCd": "11",
+      "lDongSignguCd": "170",
+      "tel": "",
+      "overview": "서울 시내를 한눈에 내려다보는 전망 타워."
+    },
+    {
+      "contentid": "d-11-04",
+      "contenttypeid": "14",
+      "title": "국립중앙박물관",
+      "addr1": "서울특별시 용산구 서빙고로 137",
+      "mapx": "126.9803",
+      "mapy": "37.5240",
+      "lDongRegnCd": "11",
+      "lDongSignguCd": "170",
+      "tel": "",
+      "overview": "한국을 대표하는 국립 박물관."
+    },
+    {
+      "contentid": "d-11-05",
+      "contenttypeid": "39",
+      "title": "광장시장 먹거리 골목",
+      "addr1": "서울특별시 종로구 창경궁로 88",
+      "mapx": "126.9997",
+      "mapy": "37.5701",
+      "lDongRegnCd": "11",
+      "lDongSignguCd": "110",
+      "tel": "",
+      "overview": "빈대떡과 육회로 유명한 전통시장 먹거리 골목."
+    },
+    {
+      "contentid": "d-11-06",
+      "contenttypeid": "38",
+      "title": "명동 쇼핑거리",
+      "addr1": "서울특별시 중구 명동길",
+      "mapx": "126.9850",
+      "mapy": "37.5636",
+      "lDongRegnCd": "11",
+      "lDongSignguCd": "140",
+      "tel": "",
+      "overview": "화장품·패션 매장이 밀집한 쇼핑 거리."
+    },
+    {
+      "contentid": "d-11-07",
+      "contenttypeid": "32",
+      "title": "을지로 호텔 (예시)",
+      "addr1": "서울특별시 중구 을지로 30",
+      "mapx": "126.9810",
+      "mapy": "37.5651",
+      "lDongRegnCd": "11",
+      "lDongSignguCd": "140",
+      "tel": "",
+      "overview": "도심 숙박 예시 데이터."
+    },
+    {
+      "contentid": "d-11-08",
+      "contenttypeid": "38",
+      "title": "코엑스",
+      "addr1": "서울특별시 강남구 영동대로 513",
+      "mapx": "127.0590",
+      "mapy": "37.5116",
+      "lDongRegnCd": "11",
+      "lDongSignguCd": "680",
+      "tel": "",
+      "overview": "대형 쇼핑몰과 별마당 도서관이 있는 복합 공간."
+    }
+  ]
+}
