@@ -9,7 +9,8 @@ SSAFY 16기 Java Track에서 진행하는 관통 프로젝트를 **하나의 저
 | 1차 | [EnjoyTrip Java](projects/01-enjoytrip-java/) | 공공 관광데이터 기반 Swing 애플리케이션 | ✅ 완료 | 2026-07-30 |
 | 2차 | [Gwangju Quest](projects/02-gwangju-quest-chatbot/) | RAG 기반 광주 여행 Quest 챗봇 | ✅ 완료 | 2026-09-04 |
 | 3차 | [EnjoyTrip EV](projects/03-enjoytrip-ev-frontend/) | 공공 API 기반 전기차 드라이브 여행 웹 플래너 | ✅ 완료 | 2026-10-02 |
-| 04차 ~ N차 | EnjoyTrip 확장 | 데이터베이스·백엔드를 단계적으로 결합 | ⏳ 예정 | 차수별 갱신 |
+| 4차 | [EnjoyTrip EV 알고리즘](projects/04-enjoytrip-ev-algorithm/) | 알고리즘 9종 + 재사용 가능한 Java 모듈과 Spring Boot 백엔드 | ✅ 완료 | 2026-10-15 |
+| 05차 ~ N차 | EnjoyTrip 확장 | 데이터베이스·백엔드를 단계적으로 결합 | ⏳ 예정 | 차수별 갱신 |
 
 ## 프로젝트 성장 흐름
 
@@ -17,10 +18,11 @@ SSAFY 16기 Java Track에서 진행하는 관통 프로젝트를 **하나의 저
 flowchart LR
     P1[1차 EnjoyTrip Java<br/>XML·CSV / Swing / MVC] --> P2[2차 Gwangju Quest<br/>REST API / RAG / Web UI]
     P2 --> P3[3차 EnjoyTrip EV<br/>Web Front / 공공 API 5종 / Figma]
-    P3 --> P4[04차 ~ N차<br/>DB / Spring 확장]
+    P3 --> P4[4차 EnjoyTrip EV 알고리즘<br/>알고리즘 9종 / Maven 멀티 모듈 / Spring Boot]
+    P4 --> P5[05차 ~ N차<br/>DB / Spring 확장]
 ```
 
-1차에서는 공공데이터를 Java 객체로 변환하고 데스크톱 UI에 표현하는 흐름을 구현했습니다. 2차에서는 같은 여행 도메인을 웹으로 확장하면서 생성형 AI API, 벡터 검색과 상태 기반 Quest 시스템을 결합했습니다. 3차에서는 서버 없이 HTML·CSS·JavaScript 만으로 관광·충전소·지도·길찾기·날씨 공공 API 를 브라우저에서 직접 연동하고, 1차에서 데이터로만 다뤘던 전기차 충전소를 여행 동선과 결합했습니다.
+1차에서는 공공데이터를 Java 객체로 변환하고 데스크톱 UI에 표현하는 흐름을 구현했습니다. 2차에서는 같은 여행 도메인을 웹으로 확장하면서 생성형 AI API, 벡터 검색과 상태 기반 Quest 시스템을 결합했습니다. 3차에서는 서버 없이 HTML·CSS·JavaScript 만으로 관광·충전소·지도·길찾기·날씨 공공 API 를 브라우저에서 직접 연동하고, 1차에서 데이터로만 다뤘던 전기차 충전소를 여행 동선과 결합했습니다. 4차에서는 3차에서 사용자가 직접 정하던 방문 순서와 고정 규칙이던 충전 지점을 알고리즘(TSP·Dijkstra 등 9종)으로 바꾸고, 다음 백엔드 차수에서 그대로 쓰도록 순수 Java 알고리즘 모듈과 Spring Boot 백엔드로 나눴습니다.
 
 ---
 
@@ -129,15 +131,48 @@ flowchart LR
 
 ---
 
+## 4차 · EnjoyTrip EV 알고리즘
+
+3차 전기차 여행 플래너의 기능에 알고리즘 9개를 적용하고, 다음 BackEnd 관통에서 그대로 쓰도록 순수 Java 알고리즘 모듈과 Spring Boot 백엔드의 Maven 멀티 모듈로 구성했습니다.
+
+### 핵심 구현
+
+- **방문 순서 최적화**: Held-Karp 비트마스크 DP(≤15곳)·2-opt — 관광지 10곳 1,400.6km → 570.3km
+- **충전소 경유 경로**: "충전소에서는 80% 까지 충전" 모델링으로 Dijkstra 최적 보장, 충전소 8,072곳에서 중앙값 17ms
+- **검색**: Trie 자동완성(초성 포함), KMP 키워드 검색, 자모 단위 편집 거리 DP 오타 허용 검색(오타 1개 검색어 98.5% 찾음)
+- **추천·정렬·보안**: 코사인 유사도 + 격자 공간 인덱스 + Top-K 힙, TimSort 직접 구현, PBKDF2 + salt + pepper
+- **도로 거리**: 카카오모빌리티 길찾기로 직선 근사(평균 오차 11.3%)를 보완
+- **검증**: 직접 구현한 알고리즘을 모두 완전탐색·JDK·RFC 테스트 벡터와 비교(검증 32개), 백엔드 MockMvc 테스트 13개
+- **백엔드**: `controller → model/service → model/dao` 구조, DAO 인터페이스 뒤 CSV(다음 차수에 DB 로 교체), 자동 보안 리뷰 지적(DoS·자원 고갈) 재현 후 수정
+
+![EnjoyTrip EV 알고리즘 경로·충전 계획](projects/04-enjoytrip-ev-algorithm/screenshots/01-route-charging.jpg)
+
+### 기술과 문서
+
+| 구분 | 내용 |
+|---|---|
+| Algorithm | 순수 Java (`algorithm-core`, 런타임 의존성 없음) — DP, 그래프, 문자열, 정렬, 공간 인덱스, 추천 |
+| Backend | Java 17, Spring Boot 3.5.16, Maven 멀티 모듈 + Wrapper |
+| Frontend | Leaflet + OpenStreetMap 시연 페이지, 의존성 없는 SVG 차트 |
+| 팀 | 김진영, 최규정, 김정원 |
+| 상세 설명 | [4차 README](projects/04-enjoytrip-ev-algorithm/README.md) |
+| 기획서·성능 측정 | [알고리즘 적용 기획서 #1~#9](projects/04-enjoytrip-ev-algorithm/ALGORITHM-PLAN.md) |
+| 선택 근거 | [알고리즘 선택 근거와 예상 질문](projects/04-enjoytrip-ev-algorithm/docs/algorithm-decisions.md) |
+| 실행 화면 | [스크린샷 모음](projects/04-enjoytrip-ev-algorithm/screenshots/) |
+| 원본 | [SSAFY GitLab 저장소](https://lab.ssafy.com/comkjo0512/trip_algo_Gwangju_03_KimJinyoung_ChoiGyujeong_KimJeongwon) |
+
+---
+
 ## 차수별 기술 확장
 
-| 영역 | 1차 | 2차 | 3차 | 확장 방향 |
-|---|---|---|---|---|
-| 사용자 화면 | Java Swing | 반응형 Web UI | Figma 설계 · Bootstrap 멀티 페이지 | 컴포넌트 기반 SPA |
-| 데이터 | XML·CSV 파일 | Markdown·PDF·Vector DB | 공공 API 5종 실시간 연동 · localStorage | 관계형 DB와 외부 API |
-| 애플리케이션 구조 | View·Service·DAO | Client·REST API·RAG | 페이지 스크립트 · core ES 모듈 | Spring 기반 계층형 서버 |
-| 사용자 상태 | 방문 기록 파일 | 프로필·Quest·XP 상태 | 회원·여행 계획·핫플·게시글 (브라우저 저장) | 로그인과 영속 세션 |
-| 품질 검증 | 컴파일·검색 스모크 테스트 | API 회귀 테스트·RAGAS | 브라우저 실동작 검증 · 화면·영상 자동화 | 자동화 테스트와 CI |
+| 영역 | 1차 | 2차 | 3차 | 4차 | 확장 방향 |
+|---|---|---|---|---|---|
+| 사용자 화면 | Java Swing | 반응형 Web UI | Figma 설계 · Bootstrap 멀티 페이지 | 지도 시연 페이지 · SVG 차트 | 컴포넌트 기반 SPA |
+| 데이터 | XML·CSV 파일 | Markdown·PDF·Vector DB | 공공 API 5종 실시간 연동 · localStorage | 공공데이터 CSV(관광지 1,504·충전소 8,072) · DAO 인터페이스 | 관계형 DB와 외부 API |
+| 애플리케이션 구조 | View·Service·DAO | Client·REST API·RAG | 페이지 스크립트 · core ES 모듈 | Maven 멀티 모듈 · Spring Boot (Controller·Service·DAO) | Spring 기반 계층형 서버 |
+| 핵심 로직 | 검색·필터 | RAG 검색·Quest 상태 | API 조합 · 고정 규칙 | 알고리즘 9종 (DP·그래프·문자열·정렬·추천) | DB 공간 인덱스·전문 검색 |
+| 사용자 상태 | 방문 기록 파일 | 프로필·Quest·XP 상태 | 회원·여행 계획·핫플·게시글 (브라우저 저장) | 비밀번호 해시(PBKDF2·salt·pepper) 준비 | 로그인과 영속 세션 |
+| 품질 검증 | 컴파일·검색 스모크 테스트 | API 회귀 테스트·RAGAS | 브라우저 실동작 검증 · 화면·영상 자동화 | 완전탐색·표준 구현 비교 검증 · JUnit·MockMvc · 성능 측정 | 자동화 테스트와 CI |
 
 ## 저장소 구조
 
@@ -158,10 +193,17 @@ flowchart LR
 │  │  ├─ README.md
 │  │  ├─ REFLECTION_REPORT.md
 │  │  └─ PROGRESS_AND_NEXT_STEPS.md
-│  └─ 03-enjoytrip-ev-frontend/
-│     ├─ *.html · assets/                # 멀티 페이지 웹 (HTML·CSS·JS 모듈)
-│     ├─ data/ · scripts/                # 더미 데이터, 키 생성·화면 캡처·시연 영상 스크립트
-│     ├─ docs/                           # 요구사항 명세서, 실행 화면, 시연 영상, 발표 자료
+│  ├─ 03-enjoytrip-ev-frontend/
+│  │  ├─ *.html · assets/                # 멀티 페이지 웹 (HTML·CSS·JS 모듈)
+│  │  ├─ data/ · scripts/                # 더미 데이터, 키 생성·화면 캡처·시연 영상 스크립트
+│  │  ├─ docs/                           # 요구사항 명세서, 실행 화면, 시연 영상, 발표 자료
+│  │  └─ README.md
+│  └─ 04-enjoytrip-ev-algorithm/
+│     ├─ algorithm-core/ · algorithm-bench/ · backend/   # Maven 멀티 모듈 (알고리즘 · 측정 · Spring Boot)
+│     ├─ data/ · scripts/                # 공공데이터 CSV, 실행·차트 스크립트
+│     ├─ docs/                           # 알고리즘 선택 근거, 성능 측정 차트
+│     ├─ screenshots/                    # 실제 실행 화면
+│     ├─ ALGORITHM-PLAN.md               # 알고리즘 적용 기획서 + 성능 측정
 │     └─ README.md
 └─ README.md                             # 전체 프로젝트 인덱스
 ```
@@ -173,6 +215,7 @@ flowchart LR
 | 1차 | [`project-01-20260730`](https://github.com/Jkim1647/SSAFY-16th-Semester-1-Comprehensive-Project/tree/project-01-20260730) | 1차 EnjoyTrip 완료 시점 |
 | 2차 | [`project-02-20260904`](https://github.com/Jkim1647/SSAFY-16th-Semester-1-Comprehensive-Project/tree/project-02-20260904) | 2차 Gwangju Quest 완료 시점 |
 | 3차 | [`project-03-20261002`](https://github.com/Jkim1647/SSAFY-16th-Semester-1-Comprehensive-Project/tree/project-03-20261002) | 3차 EnjoyTrip EV 완료 시점 |
+| 4차 | [`project-04-20261015`](https://github.com/Jkim1647/SSAFY-16th-Semester-1-Comprehensive-Project/tree/project-04-20261015) | 4차 EnjoyTrip EV 알고리즘 완료 시점 |
 
 ## 다음 차수 추가 방법
 

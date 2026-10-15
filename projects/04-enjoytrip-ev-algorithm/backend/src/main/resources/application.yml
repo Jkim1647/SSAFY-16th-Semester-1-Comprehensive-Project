@@ -1,0 +1,18 @@
+server:
+  port: 5520
+  # 시연 서버라 이 PC 에서만 접속할 수 있게 한다. 팀원 PC 에서 접속하게 하려면 0.0.0.0 으로 바꾼다.
+  address: 127.0.0.1
+
+spring:
+  application:
+    name: enjoytrip-backend
+
+enjoytrip:
+  # 프로젝트 루트의 data 폴더 (backend 폴더에서 실행해도 상위 폴더에서 찾는다)
+  data-dir: data
+  password:
+    # 운영에서는 반드시 환경 변수로 넣는다. 비어 있으면 시연용 값을 쓰고 시작할 때 경고를 남긴다.
+    pepper: ${ENJOYTRIP_PEPPER:}
+    iterations: 600000
+    # 동시에 계산하는 해시 수 (0 = CPU 코어 수의 절반). 넘치면 기다리지 않고 바로 429 응답
+    max-concurrent: 0

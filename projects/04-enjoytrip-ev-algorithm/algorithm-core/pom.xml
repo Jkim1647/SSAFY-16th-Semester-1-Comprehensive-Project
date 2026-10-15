@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.ssafy.enjoytrip</groupId>
+        <artifactId>enjoytrip-parent</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>algorithm-core</artifactId>
+    <name>EnjoyTrip algorithm-core</name>
+    <description>알고리즘 #1~#8 (순수 Java, 런타임 의존성 없음)</description>
+
+    <dependencies>
+        <!-- 런타임 의존성은 없다. 테스트만 JUnit 5 로 실행 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

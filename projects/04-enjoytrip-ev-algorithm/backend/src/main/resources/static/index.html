@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EnjoyTrip EV 알고리즘 시연</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside>
+    <h1>EnjoyTrip EV 알고리즘 시연</h1>
+    <nav class="tabs" role="tablist" aria-label="기능">
+      <button type="button" role="tab" id="tab-route" aria-controls="panel-route" aria-selected="true">경로·충전</button>
+      <button type="button" role="tab" id="tab-search" aria-controls="panel-search" aria-selected="false">검색</button>
+      <button type="button" role="tab" id="tab-recommend" aria-controls="panel-recommend" aria-selected="false">추천</button>
+      <button type="button" role="tab" id="tab-sort" aria-controls="panel-sort" aria-selected="false">정렬</button>
+      <button type="button" role="tab" id="tab-password" aria-controls="panel-password" aria-selected="false">비밀번호</button>
+      <button type="button" role="tab" id="tab-results" aria-controls="panel-results" aria-selected="false">결과</button>
+    </nav>
+    <p class="server-note" id="server-note" hidden>
+      검색·추천·정렬·비밀번호는 백엔드가 필요합니다. 프로젝트 루트에서 <code>sh scripts/run.sh server</code> 를 실행한 뒤
+      <a href="http://localhost:5520">http://localhost:5520</a> 으로 여세요.
+    </p>
+
+    <!-- #1 + #2 -->
+    <section role="tabpanel" id="panel-route" aria-labelledby="tab-route">
+      <p class="algo">#1 Held-Karp 비트마스크 DP 방문 순서 · #2 Dijkstra 충전소 경유 경로</p>
+      <p class="sub" id="sub"></p>
+      <div class="seg" role="group" aria-label="경로 보기">
+        <button type="button" id="btn-asis" aria-pressed="false">담은 순서</button>
+        <button type="button" id="btn-opt" aria-pressed="true">최적 순서 + 충전</button>
+      </div>
+      <div class="compare" id="compare"></div>
+      <div class="method" id="method"></div>
+      <div id="opt-view">
+        <h2>여행 요약</h2>
+        <div class="stats" id="stats"></div>
+        <label class="toggle"><input type="checkbox" id="show-stations"> <span id="stations-label"></span></label>
+        <h2>구간별 충전 계획 · 구간을 누르면 지도가 이동합니다</h2>
+        <ol class="legs" id="legs"></ol>
+      </div>
+      <div id="asis-view" hidden>
+        <h2>사용자가 담은 순서 (최적화 전)</h2>
+        <ol class="asis-list" id="asis-list"></ol>
+      </div>
+    </section>
+
+    <!-- #4 + #5 -->
+    <section role="tabpanel" id="panel-search" aria-labelledby="tab-search" hidden>
+      <p class="algo">#4 Trie 자동완성 (초성 검색 포함) · #5 KMP 키워드 검색 · #9 오타 허용 검색</p>
+      <div class="combo">
+        <label for="search-input" class="sr-only">관광지 검색</label>
+        <input id="search-input" type="text" autocomplete="off" placeholder="관광지 이름, 주소, 초성(ㄷㅇ) 입력"
+               role="combobox" aria-expanded="false" aria-controls="suggest-list" aria-autocomplete="list">
+        <ul id="suggest-list" class="suggest" role="listbox" hidden></ul>
+      </div>
+      <p class="hint" id="search-hint">입력하면 Trie 자동완성, Enter 를 누르면 이름·주소 전체에서 KMP 로 찾습니다. 정확히 맞는 곳이 없으면 오타를 허용해 비슷한 곳을 찾습니다 (예: 국림공원, 무둥산, 한/영 전환을 잊은 ekadid).</p>
+      <ol class="results" id="search-results"></ol>
+    </section>
+
+    <!-- #7 -->
+    <section role="tabpanel" id="panel-recommend" aria-labelledby="tab-recommend" hidden>
+      <p class="algo">#7 코사인 유사도 + 격자 공간 인덱스 + Top-K 힙</p>
+      <h2>좋아하는 여행 분류</h2>
+      <div class="chips" id="prefer-chips" role="group" aria-label="선호 분류"></div>
+      <h2>찜한 관광지 (취향 벡터에 더해집니다)</h2>
+      <div class="combo">
+        <label for="like-input" class="sr-only">찜할 관광지 검색</label>
+        <input id="like-input" type="text" autocomplete="off" placeholder="관광지를 검색해 찜하기"
+               role="combobox" aria-expanded="false" aria-controls="like-suggest" aria-autocomplete="list">
+        <ul id="like-suggest" class="suggest" role="listbox" hidden></ul>
+      </div>
+      <div class="chips" id="liked-chips"></div>
+      <h2>무엇을 중요하게 볼까요?</h2>
+      <div class="sliders">
+        <label>취향 <input type="range" id="w-taste" min="0" max="10" value="6"><output for="w-taste">6</output></label>
+        <label>가까움 <input type="range" id="w-distance" min="0" max="10" value="3"><output for="w-distance">3</output></label>
+        <label>충전 편의 <input type="range" id="w-charger" min="0" max="10" value="2"><output for="w-charger">2</output></label>
+      </div>
+      <p class="hint">기준 위치: <b id="base-label">광주송정역</b> · 지도를 클릭하면 바뀝니다.</p>
+      <button type="button" class="primary" id="recommend-btn">추천 받기</button>
+      <ol class="results" id="recommend-results"></ol>
+    </section>
+
+    <!-- #6 -->
+    <section role="tabpanel" id="panel-sort" aria-labelledby="tab-sort" hidden>
+      <p class="algo">#6 TimSort (자연 run + 이진 삽입 정렬 + run 스택 병합)</p>
+      <div class="seg three" role="group" aria-label="정렬 기준">
+        <button type="button" data-by="distance" aria-pressed="true">가까운 순</button>
+        <button type="button" data-by="chargers" aria-pressed="false">충전소 많은 순</button>
+        <button type="button" data-by="name" aria-pressed="false">이름순</button>
+      </div>
+      <label class="field">분류
+        <select id="sort-category"><option value="">전체</option></select>
+      </label>
+      <p class="hint">이름순으로 먼저 정렬한 뒤 기준으로 다시 정렬합니다. 안정 정렬이라 거리·충전소 수가 같으면 이름순이 유지됩니다. 기준 위치는 추천 탭과 같습니다.</p>
+      <ol class="results" id="sort-results"></ol>
+    </section>
+
+    <!-- #3 -->
+    <section role="tabpanel" id="panel-password" aria-labelledby="tab-password" hidden>
+      <p class="algo">#3 PBKDF2-HMAC-SHA256 직접 구현 + salt + pepper + 키 스트레칭</p>
+      <label class="field">비밀번호
+        <input id="pw-input" type="password" autocomplete="new-password" maxlength="128" placeholder="시연용 비밀번호 (실제 비밀번호는 넣지 마세요)">
+      </label>
+      <div class="row">
+        <button type="button" class="primary" id="pw-hash">해시 만들기</button>
+        <button type="button" id="pw-again">같은 비밀번호로 다시</button>
+      </div>
+      <div id="pw-output" class="pw-output" aria-live="polite"></div>
+      <label class="field">로그인 시 입력한 비밀번호
+        <input id="pw-verify-input" type="password" autocomplete="off" maxlength="128">
+      </label>
+      <button type="button" id="pw-verify">검증하기</button>
+      <p id="pw-verify-result" aria-live="polite"></p>
+    </section>
+
+    <!-- 시연·성능 측정 결과 차트 -->
+    <section role="tabpanel" id="panel-results" aria-labelledby="tab-results" hidden>
+      <p class="algo">실데이터 시연 결과와 알고리즘별 성능 측정 (막대·점에 마우스를 올리면 값이 보입니다)</p>
+      <nav class="result-nav" id="result-nav" aria-label="차트 목록"></nav>
+      <p class="hint">파란 막대가 이번에 구현한 알고리즘, 회색 막대가 비교 대상입니다. 측정 환경: Java 1.8.0_192, Windows 11. 같은 차트가 README 에 이미지로 들어 있습니다.</p>
+    </section>
+
+    <p class="note">
+      지도의 선은 직선 연결입니다. 경로 거리는 직선거리 × 1.3 근사이고, 실제 도로 거리 비교(#8 카카오모빌리티)는 README 성능 측정에 있습니다.
+      데이터: 한국관광공사 관광지, 한국환경공단 충전소 (2026-10-15).
+    </p>
+  </aside>
+  <div id="map" role="region" aria-label="지도"></div>
+  <div id="results-view" class="results-view" hidden></div>
+  <div id="chart-tip" class="chart-tip" role="tooltip" hidden></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
+  <script src="demo-result.js"></script>
+  <script src="bench-data.js"></script>
+  <script src="charts.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
