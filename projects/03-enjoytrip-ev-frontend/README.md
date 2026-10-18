@@ -8,8 +8,8 @@
 |---|---|
 | 진행 차수 | 3차 관통 프로젝트 (Web Front) |
 | 진행 기간 | 2026-10-02 |
-| 팀원 | 김진영 (팀장 · 지도·여행 데이터), 강상민 (회원·커뮤니티) |
-| 원본 저장소 | [SSAFY GitLab](https://lab.ssafy.com/kjy164777/trip_frontend_gwangju_03) |
+| 팀원 | 김진영 (팀장 · 지도·여행 데이터), 팀원 1명 (회원·커뮤니티) |
+| 원본 저장소 | SSAFY GitLab (교육생 전용, 외부 접근 불가) |
 | 화면 설계 | Figma「EnjoyTrip EV - 화면 설계 (광주 3반)」 — 컬러 토큰·컴포넌트와 화면 11개 |
 
 ## 목표
@@ -162,4 +162,4 @@ VS Code Live Server 등으로 이 폴더를 열고 `index.html` 을 엽니다. E
 - [요구사항 기능 명세서](docs/requirements.md)
 - [발표 자료 (pptx)](docs/EnjoyTrip_EV_발표.pptx)
 - [시연 영상 내레이션 대본](docs/demo/narration.md)
-- [원본 저장소 README 와 커밋 기록 (SSAFY GitLab)](https://lab.ssafy.com/kjy164777/trip_frontend_gwangju_03)
+- 원본 저장소 README 와 커밋 기록: SSAFY GitLab (교육생 전용, 외부 접근 불가)

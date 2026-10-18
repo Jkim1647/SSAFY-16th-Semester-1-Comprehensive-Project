@@ -8,8 +8,8 @@
 |---|---|
 | 진행 차수 | 4차 관통 프로젝트 (Algorithm) |
 | 진행 기간 | 2026-10-15 |
-| 팀원 | 김진영, 최규정, 김정원 |
-| 원본 저장소 | [SSAFY GitLab](https://lab.ssafy.com/comkjo0512/trip_algo_Gwangju_03_KimJinyoung_ChoiGyujeong_KimJeongwon) (보관 시점 커밋 `14d0a73`) |
+| 팀원 | 3인 (김진영 외 2명) |
+| 원본 저장소 | SSAFY GitLab (교육생 전용, 외부 접근 불가) (보관 시점 커밋 `14d0a73`) |
 
 ## 목표
 

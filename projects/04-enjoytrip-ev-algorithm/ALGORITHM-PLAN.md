@@ -1,8 +1,8 @@
 # EnjoyTrip EV — 알고리즘 PJT
 
-SSAFY 16기 광주 3반 · 관통 프로젝트 4회차 (Algorithm) · 김진영, 최규정, 김정원
+SSAFY 16기 광주 3반 · 관통 프로젝트 4회차 (Algorithm) · 김진영 외 2명
 
-- 저장소: https://lab.ssafy.com/comkjo0512/trip_algo_Gwangju_03_KimJinyoung_ChoiGyujeong_KimJeongwon
+- 저장소: SSAFY GitLab (교육생 전용, 외부 접근 불가)
 
 3회차(Web Front)에서 만든 전기차 드라이브 여행 플래너 **EnjoyTrip EV**에 알고리즘 9개를 적용했습니다.
 

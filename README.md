@@ -45,12 +45,12 @@ flowchart LR
 | 구분 | 내용 |
 |---|---|
 | 기술 | Java, Swing, SAX Parser, MVC, XML, CSV |
-| 팀 | 김현호, 김진영 |
+| 팀 | 2인 (김진영 외 1명) |
 | 상세 설명 | [1차 README](projects/01-enjoytrip-java/README.md) |
 | 구현 소스 | [EnjoyTrip Java 소스](projects/01-enjoytrip-java/EnjoyTrip_source_code/EnjoyTrip_0730/) |
 | 실행 화면 | [스크린샷 모음](projects/01-enjoytrip-java/execution_screenshots/) |
 | 실행 영상 | [데모 영상과 자막](projects/01-enjoytrip-java/EnjoyTrip_demo_video_with_subtitles/) |
-| 원본 | [SSAFY GitLab 저장소](https://lab.ssafy.com/hno130/trip_java_gwangju_03/-/tree/824215d7d1ae35163f9fdc03d8aaddd484aeabb2/) |
+| 원본 | SSAFY GitLab (교육생 전용, 외부 접근 불가) |
 
 ---
 
@@ -89,12 +89,12 @@ flowchart LR
 | Backend | Python, FastAPI, Uvicorn, Pydantic |
 | AI·RAG | OpenAI API, LangChain, ChromaDB, PyMuPDF |
 | 평가 | RAGAS, JSON 테스트셋, CSV 비교 결과 |
-| 팀 | 진영, 민수 |
+| 팀 | 2인 (김진영 외 1명) |
 | 실행·기능 | [2차 README](projects/02-gwangju-quest-chatbot/README.md) |
 | 고찰 | [생성형 AI·RAG 고찰 보고서](projects/02-gwangju-quest-chatbot/REFLECTION_REPORT.md) |
 | 성능 평가 | [RAGAS 비교 결과](projects/02-gwangju-quest-chatbot/servers/ragas_gwangju_comparison.md) |
 | 구현 기록 | [진행 현황과 개선 기록](projects/02-gwangju-quest-chatbot/PROGRESS_AND_NEXT_STEPS.md) |
-| 원본 | [SSAFY GitLab 저장소](https://lab.ssafy.com/kjy164777/trip_chatbot_gwangju_03_jinyoung_minsu) |
+| 원본 | SSAFY GitLab (교육생 전용, 외부 접근 불가) |
 
 ---
 
@@ -121,13 +121,13 @@ flowchart LR
 | Frontend | HTML5, CSS3, JavaScript (ES Module), Bootstrap 5, Chart.js |
 | 외부 API | 한국관광공사 KorService2, 한국환경공단 충전소, Kakao Maps, 카카오모빌리티 길찾기, Open-Meteo |
 | 설계 | Figma 디자인 토큰·컴포넌트 → CSS 변수 |
-| 팀 | 김진영, 강상민 |
+| 팀 | 2인 (김진영 외 1명) |
 | 상세 설명 | [3차 README](projects/03-enjoytrip-ev-frontend/README.md) |
 | 요구사항 | [요구사항 기능 명세서](projects/03-enjoytrip-ev-frontend/docs/requirements.md) |
 | 실행 화면 | [스크린샷 모음](projects/03-enjoytrip-ev-frontend/docs/screenshots/) |
 | 실행 영상 | [TTS 시연 영상과 자막](projects/03-enjoytrip-ev-frontend/docs/demo/) |
 | 발표 자료 | [발표 pptx](projects/03-enjoytrip-ev-frontend/docs/EnjoyTrip_EV_발표.pptx) |
-| 원본 | [SSAFY GitLab 저장소](https://lab.ssafy.com/kjy164777/trip_frontend_gwangju_03) |
+| 원본 | SSAFY GitLab (교육생 전용, 외부 접근 불가) |
 
 ---
 
@@ -154,12 +154,12 @@ flowchart LR
 | Algorithm | 순수 Java (`algorithm-core`, 런타임 의존성 없음) — DP, 그래프, 문자열, 정렬, 공간 인덱스, 추천 |
 | Backend | Java 17, Spring Boot 3.5.16, Maven 멀티 모듈 + Wrapper |
 | Frontend | Leaflet + OpenStreetMap 시연 페이지, 의존성 없는 SVG 차트 |
-| 팀 | 김진영, 최규정, 김정원 |
+| 팀 | 3인 (김진영 외 2명) |
 | 상세 설명 | [4차 README](projects/04-enjoytrip-ev-algorithm/README.md) |
 | 기획서·성능 측정 | [알고리즘 적용 기획서 #1~#9](projects/04-enjoytrip-ev-algorithm/ALGORITHM-PLAN.md) |
 | 선택 근거 | [알고리즘 선택 근거와 예상 질문](projects/04-enjoytrip-ev-algorithm/docs/algorithm-decisions.md) |
 | 실행 화면 | [스크린샷 모음](projects/04-enjoytrip-ev-algorithm/screenshots/) |
-| 원본 | [SSAFY GitLab 저장소](https://lab.ssafy.com/comkjo0512/trip_algo_Gwangju_03_KimJinyoung_ChoiGyujeong_KimJeongwon) |
+| 원본 | SSAFY GitLab (교육생 전용, 외부 접근 불가) |
 
 ---
 
