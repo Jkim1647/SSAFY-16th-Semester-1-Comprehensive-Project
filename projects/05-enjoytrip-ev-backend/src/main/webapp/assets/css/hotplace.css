@@ -1,0 +1,14 @@
+/* F105 핫플레이스 전용 스타일 (공통 .hp-card / .hp-photo / .pick-hint 는 style.css) */
+.hp-desc {
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+  overflow: hidden; white-space: pre-line;
+}
+.hp-body { white-space: pre-line; line-height: 1.7; }
+.hp-pick-map { height: 440px; border-radius: 10px; border: 1px solid var(--et-line); cursor: crosshair; }
+.hp-detail-map { height: 320px; border-radius: 10px; }
+.hp-preview { max-height: 220px; object-fit: cover; }
+.hp-current { width: 96px; height: 64px; object-fit: cover; border-radius: 6px; border: 1px solid var(--et-line); }
+.hp-popup img { display: block; width: 180px; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 6px; margin-bottom: .375rem; }
+@media (max-width: 991.98px) {
+  .hp-pick-map { height: 320px; }
+}

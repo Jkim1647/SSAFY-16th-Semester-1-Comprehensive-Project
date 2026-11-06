@@ -1,0 +1,11 @@
+{
+  "theme": "neutral",
+  "fontFamily": "Malgun Gothic, sans-serif",
+  "flowchart": {
+    "htmlLabels": false,
+    "useMaxWidth": false
+  },
+  "class": {
+    "useMaxWidth": false
+  }
+}

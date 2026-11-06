@@ -1,0 +1,189 @@
+erDiagram
+  %% 실선 = FOREIGN KEY 제약, 점선 = 논리적 관계(FK 미설정)
+  sidos ||--o{ guguns : "sido_code"
+  guguns |o..o{ attractions : "(sido_code, signgu_code) 논리 참조"
+  content_types ||--o{ attractions : classifies
+  members ||--o{ plans : writes
+  plans ||--|{ plan_stops : has
+  attractions ||--o{ plan_stops : "content_id"
+  members ||--o{ hotplaces : registers
+  members ||--o{ boards : writes
+  boards ||--o| board_settings : "공지·분류"
+  boards ||--o{ board_comments : has
+  members ||--o{ board_comments : writes
+  boards ||--o{ board_likes : liked
+  members ||--o{ board_likes : likes
+  boards ||--o{ board_bookmarks : saved
+  members ||--o{ board_bookmarks : saves
+  boards ||--o{ board_reports : reported
+  board_comments ||--o{ board_reports : reported
+  members ||--o{ board_reports : "신고·처리"
+  boards ||--o{ board_moderation : moderated
+  board_comments ||--o{ board_moderation : moderated
+  members ||--o{ board_moderation : "admin"
+  members ||--o{ password_resets : requests
+  ev_stations ||--o{ ev_slots : "1h slots"
+  ev_stations ||--o{ ev_reservations : at
+  members ||--o{ ev_reservations : books
+  sim_runs |o..o{ ev_reservations : "run_id (0 = 실제 예약)"
+
+  sidos {
+    int no PK
+    int sido_code UK
+    varchar sido_name
+  }
+  guguns {
+    int no PK
+    int sido_code FK "UK(sido_code, gugun_code)"
+    int gugun_code
+    varchar gugun_name
+  }
+  content_types {
+    int content_type_id PK
+    varchar name
+  }
+  attractions {
+    int no PK
+    int content_id UK
+    int content_type_id FK
+    varchar title
+    varchar addr1
+    varchar tel
+    varchar first_image
+    decimal latitude "DECIMAL(20,17)"
+    decimal longitude "DECIMAL(20,17)"
+    int sido_code "IDX(sido_code, signgu_code)"
+    int signgu_code
+    varchar lcls1_3 "분류 lcls1~3"
+    varchar overview
+    varchar homepage
+    int map_level
+  }
+  members {
+    bigint member_id PK
+    varchar email UK
+    varchar name
+    varchar password_hash "PBKDF2"
+    varchar role
+    datetime created_at
+  }
+  password_resets {
+    char token_hash PK
+    bigint member_id FK
+    datetime expires_at
+    datetime used_at
+  }
+  plans {
+    bigint plan_id PK
+    bigint member_id FK
+    varchar title
+    date start_date
+    date end_date
+    int start_soc
+    varchar memo
+  }
+  plan_stops {
+    bigint plan_id PK,FK
+    int seq PK
+    int content_id FK
+    date visit_date
+    int cost
+    varchar memo
+  }
+  hotplaces {
+    bigint hotplace_id PK
+    bigint member_id FK
+    varchar title
+    varchar place_type
+    date visited_on
+    decimal latitude
+    decimal longitude
+    varchar photo_file
+  }
+  boards {
+    bigint board_id PK
+    varchar board_type "notice / free"
+    bigint member_id FK
+    varchar title
+    text content
+    int view_count
+    datetime created_at
+  }
+  board_settings {
+    bigint board_id PK,FK
+    varchar category
+    tinyint pinned
+    int pin_order
+    datetime pin_start
+    datetime pin_end
+  }
+  board_comments {
+    bigint comment_id PK
+    bigint board_id FK
+    bigint member_id FK
+    text content
+    tinyint hidden
+  }
+  board_likes {
+    bigint board_id PK,FK
+    bigint member_id PK,FK
+  }
+  board_bookmarks {
+    bigint board_id PK,FK
+    bigint member_id PK,FK
+  }
+  board_reports {
+    bigint report_id PK
+    bigint board_id FK
+    bigint comment_id FK
+    bigint member_id FK
+    varchar status
+    bigint resolved_by FK
+  }
+  board_moderation {
+    bigint moderation_id PK
+    bigint board_id FK
+    bigint comment_id FK
+    bigint admin_id FK
+    varchar action
+    varchar reason
+  }
+  news {
+    bigint news_id PK
+    varchar keyword
+    varchar title
+    varchar link UK
+    datetime published_at
+  }
+  ev_stations {
+    varchar stat_id PK
+    varchar name
+    decimal latitude
+    decimal longitude
+    int max_kw
+    int charger_count
+  }
+  ev_slots {
+    bigint run_id PK
+    varchar stat_id PK,FK
+    datetime slot_start PK
+    int capacity "충전기 수"
+    int booked "FOR UPDATE 잠금"
+  }
+  ev_reservations {
+    bigint reservation_id PK
+    bigint run_id
+    varchar stat_id FK
+    datetime slot_start
+    int charger_no
+    bigint member_id FK
+    varchar status
+  }
+  sim_runs {
+    bigint run_id PK
+    varchar mode
+    varchar queue_type
+    int vehicles
+    int confirmed
+    int overbooked
+  }

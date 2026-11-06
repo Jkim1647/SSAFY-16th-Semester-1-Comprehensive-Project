@@ -1,0 +1,57 @@
+/* =========================================================
+   Web Backend 회차 추가 스타일 (style.css 는 3회차 프론트 그대로)
+   ========================================================= */
+.ev-tag { font-size: .65rem; font-weight: 700; vertical-align: super; color: var(--et-accent); letter-spacing: .04em; }
+.navbar .nav-link { white-space: nowrap; }
+
+/* 메인 히어로: 배터리 인트로로 들어가는 입구 */
+.hero-ev { background: #0d0f14; color: #eef2ff; border-bottom: 0; }
+.hero-ev h1 em { color: #41d98a; }
+.hero-ev .lead { color: #b8bfd3; }
+.hero-battery { width: 120px; height: 46px; border: 3px solid #eef2ff; border-radius: 8px; position: relative; }
+.hero-battery::after { content: ""; position: absolute; right: -9px; top: 13px; width: 6px; height: 14px; background: #eef2ff; border-radius: 0 3px 3px 0; }
+.hero-battery i { position: absolute; left: 4px; top: 4px; bottom: 4px; width: 12%; border-radius: 3px; background: #ff4d5e; animation: hero-drain 3.5s ease-in-out infinite alternate; }
+@keyframes hero-drain { from { width: 30%; background: #ffb347; } to { width: 8%; background: #ff4d5e; } }
+@media (prefers-reduced-motion: reduce) { .hero-battery i { animation: none; } }
+
+.stat-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .75rem; }
+.stat-strip > div { border: 1px solid var(--et-line); border-radius: 10px; padding: .75rem 1rem; }
+.stat-strip .num { font-size: 1.4rem; font-weight: 800; }
+.stat-strip .lbl { font-size: .8rem; color: var(--et-muted); }
+
+/* 관광지 상세 */
+.detail-photo { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 10px; background: var(--et-surface); }
+.kv { display: grid; grid-template-columns: 5rem 1fr; gap: .25rem .75rem; font-size: .9rem; }
+.kv dt { color: var(--et-muted); font-weight: 500; }
+.kv dd { margin: 0; }
+
+/* 충전소 하루 좌석표 (티켓팅) */
+.slot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: .5rem; }
+.slot-cell { border: 1px solid var(--et-line); border-radius: 10px; padding: .5rem; text-align: left; background: #fff; }
+.slot-cell .time { font-weight: 700; }
+.slot-cell .seats { display: flex; gap: 3px; margin-top: .35rem; flex-wrap: wrap; }
+.slot-cell .seats b { width: 12px; height: 12px; border-radius: 3px; background: #dbe2f0; }
+.slot-cell .seats b.on { background: #1f6bff; }
+.slot-cell .seats b.me { background: var(--et-primary); }
+.slot-cell.is-full { background: #f6f7fb; color: var(--et-muted); }
+.slot-cell.is-past { opacity: .45; }
+button.slot-cell:hover:not(:disabled) { border-color: #1f6bff; box-shadow: 0 0 0 2px #dbe7ff; }
+
+.pagination { --bs-pagination-color: var(--et-primary); }
+.table-sm td, .table-sm th { vertical-align: middle; }
+
+
+
+/* 게시판 검색은 목록 아래의 보조 기능으로 표시한다. */
+.board-search .form-control { width: 12rem !important; max-width: 100%; }
+.board-search .form-control,
+.board-search .form-select { border-color: var(--bs-border-color); color: var(--bs-secondary-color); }
+
+/* 사진 레퍼런스처럼 박스 없이 윤곽/채움으로 선택 상태를 표시한다. */
+.reaction-icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; padding: .4rem; border: 0; background: transparent; color: var(--bs-body-color); text-decoration: none; cursor: pointer; }
+.reaction-icon svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.reaction-icon:hover { color: var(--et-muted); }
+.reaction-icon:focus-visible { outline: 2px solid var(--et-primary); outline-offset: 2px; border-radius: 4px; }
+.reaction-icon:disabled { opacity: .5; cursor: wait; }
+.reaction-icon[aria-pressed="true"] svg { fill: currentColor; }
+.reaction-like[aria-pressed="true"], .reaction-like[aria-pressed="true"]:hover { color: #ed253b; }

@@ -1,0 +1,12 @@
+target*/
+.tomcat*/
+.env
+*.log
+.superpowers/
+.idea/
+.vscode/
+.settings/
+.classpath
+.project
+bin/
+.claude/

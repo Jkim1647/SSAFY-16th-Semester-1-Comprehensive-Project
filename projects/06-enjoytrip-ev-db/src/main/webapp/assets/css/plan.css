@@ -1,0 +1,29 @@
+/* F104 여행 계획 전용 스타일 (공통 style.css 의 .stop-list/.stop/.leg/.plan-summary 위에 덧붙인다) */
+
+/* 충전소 지도 마커: 공통 .ev-marker 는 버튼용이라 Leaflet divIcon 용으로 따로 둔다 */
+.ev-pin {
+  display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%;
+  background: var(--et-accent); color: var(--et-ink); font-size: 13px; line-height: 1;
+  border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.35);
+}
+.legend-stop {
+  display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--et-primary); color: #fff; font-size: 11px; font-weight: 700;
+}
+
+/* 구간 안내 줄의 충전 정보 */
+.charge-line { color: #92400e; font-weight: 500; }
+.charge-line.is-warn, .ev-summary.is-warn { color: #b91c1c; }
+.ev-summary, .route-summary { font-weight: 600; }
+.route-summary { color: #065f46; }
+
+/* 상세 화면 */
+.plan-detail-map { height: 420px; border-radius: 10px; border: 1px solid var(--et-line); }
+.plan-memo { white-space: pre-wrap; background: var(--et-surface); border-radius: 10px; padding: 1rem; line-height: 1.7; }
+.detail-stop { grid-template-columns: auto 1fr auto; }
+.trip-legs { padding-left: 1.25rem; }
+.trip-legs li { padding: .35rem 0; border-bottom: 1px dashed var(--et-line); }
+
+@media (max-width: 991.98px) {
+  .plan-detail-map { height: 300px; }
+}

@@ -1,0 +1,72 @@
+classDiagram
+  direction LR
+  class ControllerHelper {
+    <<interface>>
+    +view(req,res,name)
+    +redirect(req,res,path)
+    +toJSON(obj,res)
+    +requireLogin(req,res) boolean
+    +requireAdmin(req,res) boolean
+  }
+  class EvController
+  class SimulationController
+  class MemberController
+  class PlanController
+  ControllerHelper <|.. EvController
+  ControllerHelper <|.. SimulationController
+  ControllerHelper <|.. MemberController
+  ControllerHelper <|.. PlanController
+
+  class EvService {
+    +reserve(memberId, statId, slot) Result
+    +cancel(memberId, reservationId)
+    +tryReserve(runId, station, slot, memberId, vehicleNo, Mode) Result
+    +dayBoard(runId, station, date) List~SlotStatus~
+  }
+  class MemberService {
+    <<interface>>
+    +regist() +login() +modify() +withdraw() +issueTemporaryPassword()
+  }
+  class BasicMemberService
+  MemberService <|.. BasicMemberService
+  class PlanService {
+    +save(memberId, plan) long
+    +optimize(contentIds, returnToStart) RouteResult
+    +evTrip(contentIds, startSoc, returnToStart, optimizeOrder) EvTripPlan
+  }
+  class SimulationEngine {
+    +start(Config) long
+    +status(runId, since, full) Map
+  }
+  class ReservationQueue {
+    <<interface>>
+    +start(handler) +publish(req) +depth()
+  }
+  class MemoryReservationQueue
+  class KafkaReservationQueue
+  ReservationQueue <|.. MemoryReservationQueue
+  ReservationQueue <|.. KafkaReservationQueue
+  SimulationEngine --> ReservationQueue
+  SimulationEngine --> EvService : 가상 차량도 같은 예약 경로
+
+  class EvDao { <<interface>> +lockSlot(con,..) +insertReservation(con,r) }
+  class JdbcEvDao
+  EvDao <|.. JdbcEvDao
+  class MemberDao { <<interface>> }
+  class JdbcMemberDao
+  MemberDao <|.. JdbcMemberDao
+  class DBUtil { +getConnection()$ }
+
+  EvController --> EvService
+  SimulationController --> SimulationEngine
+  MemberController --> MemberService
+  PlanController --> PlanService
+  EvService --> EvDao
+  BasicMemberService --> MemberDao
+  PlanService --> RouteOptimizer
+  PlanService --> EvTripPlanner
+  JdbcEvDao ..> DBUtil
+  JdbcMemberDao ..> DBUtil
+
+  class RouteOptimizer { 4회차: Held-Karp / 2-opt }
+  class EvTripPlanner { 4회차: 충전소 경유 Dijkstra }

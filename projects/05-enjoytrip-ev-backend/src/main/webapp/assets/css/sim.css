@@ -1,0 +1,106 @@
+/* =========================================================
+   예약 몰림 시뮬레이션: ① 배터리 이야기(어두운 톤) → ③ 충전 티켓팅(밝은 톤)
+   ========================================================= */
+:root {
+  --sim-ink: #eef2ff;
+  --sim-bg: #0d0f14;
+  --sim-panel: #151923;
+  --sim-line: #262c3a;
+  --sim-red: #ff4d5e;
+  --sim-amber: #ffb347;
+  --sim-green: #41d98a;
+  --sim-blue: #1f6bff;
+}
+
+/* ---------- 인트로 (풀스크린) ---------- */
+.intro {
+  position: fixed; inset: 0; z-index: 1100; background: var(--sim-bg); color: var(--sim-ink);
+  display: grid; place-items: center; text-align: center; padding: 2rem; cursor: pointer;
+}
+.intro[hidden] { display: none; }
+.intro-scene { max-width: 680px; opacity: 0; transform: translateY(8px); transition: opacity .6s ease, transform .6s ease; }
+.intro-scene.is-on { opacity: 1; transform: none; }
+.intro h2 { font-family: "Noto Serif KR", serif; font-weight: 700; font-size: clamp(1.5rem, 4vw, 2.4rem); line-height: 1.6; margin: 0; }
+.intro p { color: #b8bfd3; font-size: clamp(1rem, 2.2vw, 1.15rem); line-height: 1.8; margin: 1rem 0 0; }
+.intro b.hl-red { color: var(--sim-red); }
+.intro b.hl-amber { color: var(--sim-amber); }
+.intro b.hl-green { color: var(--sim-green); }
+.intro .big-battery { width: 180px; height: 70px; border: 4px solid var(--sim-ink); border-radius: 12px; position: relative; margin: 0 auto 1.75rem; }
+.intro .big-battery::after { content: ""; position: absolute; right: -12px; top: 21px; width: 8px; height: 20px; background: var(--sim-ink); border-radius: 0 4px 4px 0; }
+.intro .big-battery i { position: absolute; left: 5px; top: 5px; bottom: 5px; width: 12%; border-radius: 5px; background: var(--sim-red); transition: width 2.4s ease-in; }
+.intro .big-battery.is-full i { width: 92%; background: var(--sim-green); transition-duration: 1.2s; }
+.intro-dots { position: absolute; bottom: 76px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; }
+.intro-dots i { width: 18px; height: 3px; border-radius: 2px; background: #ffffff40; }
+.intro-dots i.is-on { background: #fff; }
+.intro-controls { position: absolute; left: 20px; right: 20px; bottom: 18px; display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 12px; cursor: default; }
+.intro-hide-today { display: inline-flex; align-items: center; gap: 6px; font-size: .8rem; color: #b8bfd3; cursor: pointer; }
+.intro-hide-today input { width: 16px; height: 16px; accent-color: var(--sim-green); }
+@media (max-width: 600px) {
+  .intro { padding-bottom: 8rem; }
+  .intro-controls { justify-content: center; }
+  .intro-dots { bottom: 76px; }
+  .intro-hint { bottom: 96px; width: 100%; }
+}
+.intro-hint { position: absolute; left: 50%; bottom: 96px; transform: translateX(-50%); font-size: .8rem; color: #7d859b; }
+.intro .btn-press { margin-top: 2rem; font-weight: 700; padding: .9rem 2rem; border-radius: 999px; }
+.ticket-num { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 900; letter-spacing: -.03em; color: #fff; }
+
+/* ---------- 대시보드 ---------- */
+.sim-page { background: #f4f6fb; min-height: calc(100dvh - var(--et-header-h)); }
+.sim-wrap { max-width: 1320px; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
+.sim-head h1 { font-size: 1.35rem; font-weight: 800; letter-spacing: -.02em; }
+.panel { background: #fff; border: 1px solid #e3e7f0; border-radius: 14px; padding: 1rem 1.1rem; }
+.panel-dark { background: var(--sim-bg); color: var(--sim-ink); border-color: var(--sim-bg); }
+.panel h2 { font-size: .95rem; font-weight: 700; margin: 0 0 .6rem; }
+.panel .sub { font-size: .78rem; color: #8a93a8; }
+
+.my-car { display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: center; }
+.my-car .ticket { text-align: center; padding: .5rem 1rem; border-radius: 10px; background: #fff; color: #141a2e; }
+.my-car .ticket small { display: block; font-size: .7rem; color: #6b7280; }
+.my-car .ticket strong { font-size: 1.6rem; font-weight: 900; letter-spacing: -.02em; }
+.my-car .status { font-weight: 700; font-size: 1.05rem; }
+.my-car .status.ok { color: var(--sim-green); }
+.my-car .status.bad { color: var(--sim-red); }
+.my-car .status.wait { color: var(--sim-amber); }
+.mini-battery { display: inline-block; width: 38px; height: 16px; border: 2px solid currentColor; border-radius: 4px; position: relative; vertical-align: -3px; margin-right: .35rem; }
+.mini-battery i { position: absolute; left: 2px; top: 2px; bottom: 2px; border-radius: 1px; background: var(--sim-red); }
+
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: .5rem; }
+.kpi { background: #fff; border: 1px solid #e3e7f0; border-radius: 12px; padding: .6rem .8rem; }
+.kpi .v { font-size: 1.35rem; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.kpi .l { font-size: .74rem; color: #6b7280; }
+.kpi.is-good .v { color: #059669; }
+.kpi.is-bad { border-color: #fecdd3; background: #fff1f2; }
+.kpi.is-bad .v { color: #e11d48; }
+
+/* ① 배터리 격자 */
+.battery-grid { width: 100%; display: block; image-rendering: pixelated; border-radius: 6px; }
+.legend { display: flex; flex-wrap: wrap; gap: .75rem; font-size: .75rem; color: #9aa3b8; margin-top: .5rem; }
+.legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: .3rem; vertical-align: -1px; background: var(--c); }
+
+/* ③ 좌석 배치도 */
+.seat-board { display: grid; gap: .35rem; max-height: 470px; overflow-y: auto; padding-right: .25rem; }
+.seat-row { display: grid; grid-template-columns: minmax(8rem, 13rem) 1fr; gap: .6rem; align-items: center; font-size: .78rem; }
+.seat-row .name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #374151; }
+.seat-row .name small { color: #9aa3b8; }
+.seats { display: flex; flex-wrap: wrap; gap: 3px; }
+.seat { width: 16px; height: 16px; border-radius: 4px; background: #dfe5f1; transition: background .25s; }
+.seat.on { background: var(--sim-blue); }
+.seat.me { background: var(--sim-green); box-shadow: 0 0 0 2px #bbf7d0; }
+.seat.over { background: var(--sim-red); box-shadow: 0 0 0 2px #fecdd3; animation: over-blink 1s ease-in-out infinite; }
+@keyframes over-blink { 50% { opacity: .55; } }
+
+.log { height: 230px; overflow-y: auto; font-family: Consolas, "D2Coding", monospace; font-size: .74rem; line-height: 1.55; background: var(--sim-bg); color: #9fb0ff; border-radius: 10px; padding: .6rem .75rem; }
+.log .ok { color: #7ee2a8; }
+.log .retry { color: #ffcf8a; }
+.log .reject { color: #ff98a3; }
+.log .info { color: #e6e9f5; }
+
+.how pre { background: #0d0f14; color: #e6e9f5; border-radius: 8px; padding: .75rem; font-size: .75rem; margin: .5rem 0 0; white-space: pre-wrap; }
+.run-form .form-select, .run-form .form-control { font-size: .85rem; }
+.history-table td, .history-table th { font-size: .8rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-scene, .intro .big-battery i, .seat { transition: none; }
+  .seat.over { animation: none; }
+}

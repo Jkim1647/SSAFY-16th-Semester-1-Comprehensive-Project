@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1350" height="1080" viewBox="0 0 1350 1080" role="img" aria-label="EnjoyTrip 유스케이스 다이어그램">
+<rect width="1350" height="1080" fill="white"/>
+<g font-family="Malgun Gothic, sans-serif" fill="#111" stroke="#222" stroke-width="1.6">
+<rect x="300" y="35" width="1000" height="1010" fill="white"/>
+<text x="800" y="68" text-anchor="middle" font-size="24" stroke="none">EnjoyTrip 여행 서비스</text>
+<path d="M 197 210 L 340 170" fill="none" stroke="#555" stroke-width="1.2"/>
+<path d="M 197 210 L 675 170" fill="none" stroke="#555" stroke-width="1.2"/>
+<path d="M 197 210 L 1010 170" fill="none" stroke="#555" stroke-width="1.2"/>
+<path d="M 197 210 L 340 270" fill="none" stroke="#555" stroke-width="1.2"/>
+<path d="M 197 210 L 675 270" fill="none" stroke="#555" stroke-width="1.2"/>
+<path d="M 197 210 L 1010 270" fill="none" stroke="#555" stroke-width="1.2"/>
+<circle cx="155" cy="165" r="16" fill="white"/>
+<path d="M155 181 V227 M135 198 H175 M155 227 L135 257 M155 227 L175 257" fill="none"/>
+<text x="155" y="286" text-anchor="middle" font-size="20" stroke="none">비회원</text>
+<ellipse cx="465" cy="170" rx="125" ry="32" fill="white"/>
+<text x="465" y="176" text-anchor="middle" font-size="17" stroke="none">회원가입·로그인</text>
+<ellipse cx="800" cy="170" rx="125" ry="32" fill="white"/>
+<text x="800" y="176" text-anchor="middle" font-size="17" stroke="none">비밀번호 재설정</text>
+<ellipse cx="1135" cy="170" rx="125" ry="32" fill="white"/>
+<text x="1135" y="176" text-anchor="middle" font-size="17" stroke="none">관광지 검색·상세</text>
+<ellipse cx="465" cy="270" rx="125" ry="32" fill="white"/>
+<text x="465" y="276" text-anchor="middle" font-size="17" stroke="none">핫플·뉴스·게시판 조회</text>
+<ellipse cx="800" cy="270" rx="125" ry="32" fill="white"/>
+<text x="800" y="276" text-anchor="middle" font-size="17" stroke="none">충전소 검색·상세</text>
+<ellipse cx="1135" cy="270" rx="125" ry="32" fill="white"/>
+<text x="1135" y="276" text-anchor="middle" font-size="17" stroke="none">예약 시뮬레이션</text>
+<path d="M 197 565 L 340 430" fill="none" stroke="#555" stroke-width="1.2"/>
+<path d="M 197 565 L 675 430" fill="none" stroke="#555" stroke-width="1.2"/>
+<path d="M 197 565 L 1010 430" fill="none" stroke="#555" stroke-width="1.2"/>
+<path d="M 197 565 L 340 530" fill="none" stroke="#555" stroke-width="1.2"/>
+<path d="M 197 565 L 675 530" fill="none" stroke="#555" stroke-width="1.2"/>
+<path d="M 197 565 L 1010 530" fill="none" stroke="#555" stroke-width="1.2"/>
+<path d="M 197 565 L 340 630" fill="none" stroke="#555" stroke-width="1.2"/>
+<path d="M 197 565 L 675 630" fill="none" stroke="#555" stroke-width="1.2"/>
+<path d="M 197 565 L 1010 630" fill="none" stroke="#555" stroke-width="1.2"/>
+<circle cx="155" cy="520" r="16" fill="white"/>
+<path d="M155 536 V582 M135 553 H175 M155 582 L135 612 M155 582 L175 612" fill="none"/>
+<text x="155" y="641" text-anchor="middle" font-size="20" stroke="none">회원</text>
+<ellipse cx="465" cy="430" rx="125" ry="32" fill="white"/>
+<text x="465" y="436" text-anchor="middle" font-size="17" stroke="none">여행 계획 관리</text>
+<ellipse cx="800" cy="430" rx="125" ry="32" fill="white"/>
+<text x="800" y="436" text-anchor="middle" font-size="17" stroke="none">핫플레이스 관리</text>
+<ellipse cx="1135" cy="430" rx="125" ry="32" fill="white"/>
+<text x="1135" y="436" text-anchor="middle" font-size="17" stroke="none">충전 예약·취소</text>
+<ellipse cx="465" cy="530" rx="125" ry="32" fill="white"/>
+<text x="465" y="536" text-anchor="middle" font-size="17" stroke="none">게시글·댓글 관리</text>
+<ellipse cx="800" cy="530" rx="125" ry="32" fill="white"/>
+<text x="800" y="536" text-anchor="middle" font-size="17" stroke="none">좋아요·북마크·신고</text>
+<ellipse cx="1135" cy="530" rx="125" ry="32" fill="white"/>
+<text x="1135" y="536" text-anchor="middle" font-size="17" stroke="none">내 예약 조회</text>
+<ellipse cx="465" cy="630" rx="125" ry="32" fill="white"/>
+<text x="465" y="636" text-anchor="middle" font-size="17" stroke="none">내 정보 수정·탈퇴</text>
+<ellipse cx="800" cy="630" rx="125" ry="32" fill="white"/>
+<text x="800" y="636" text-anchor="middle" font-size="17" stroke="none">로그아웃</text>
+<ellipse cx="1135" cy="630" rx="125" ry="32" fill="white"/>
+<text x="1135" y="636" text-anchor="middle" font-size="17" stroke="none">경로 최적화·충전 경로</text>
+<path d="M 197 900 L 340 840" fill="none" stroke="#555" stroke-width="1.2"/>
+<path d="M 197 900 L 675 840" fill="none" stroke="#555" stroke-width="1.2"/>
+<path d="M 197 900 L 1010 840" fill="none" stroke="#555" stroke-width="1.2"/>
+<path d="M 197 900 L 340 940" fill="none" stroke="#555" stroke-width="1.2"/>
+<circle cx="155" cy="855" r="16" fill="white"/>
+<path d="M155 871 V917 M135 888 H175 M155 917 L135 947 M155 917 L175 947" fill="none"/>
+<text x="155" y="976" text-anchor="middle" font-size="20" stroke="none">관리자</text>
+<ellipse cx="465" cy="840" rx="125" ry="32" fill="white"/>
+<text x="465" y="846" text-anchor="middle" font-size="17" stroke="none">공지 작성·수정·삭제·고정</text>
+<ellipse cx="800" cy="840" rx="125" ry="32" fill="white"/>
+<text x="800" y="846" text-anchor="middle" font-size="17" stroke="none">신고 검토·숨김·복구</text>
+<ellipse cx="1135" cy="840" rx="125" ry="32" fill="white"/>
+<text x="1135" y="846" text-anchor="middle" font-size="17" stroke="none">회원 조회·삭제</text>
+<ellipse cx="465" cy="940" rx="125" ry="32" fill="white"/>
+<text x="465" y="946" text-anchor="middle" font-size="17" stroke="none">뉴스 수집</text>
+</g></svg>

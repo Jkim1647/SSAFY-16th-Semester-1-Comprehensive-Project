@@ -1,0 +1,66 @@
+flowchart LR
+  subgraph actors["사용자 역할"]
+    direction TB
+    admin["👤 관리자"]
+    member["👤 회원"]
+    guest["👤 비회원"]
+    admin -. 상속 .-> member
+    member -. 상속 .-> guest
+  end
+
+  subgraph system["EnjoyTrip 여행 서비스"]
+    direction TB
+    subgraph adminFeatures["관리자 기능"]
+      direction TB
+      A1([공지 관리<br/>작성·수정·삭제·고정])
+      A2([신고 처리<br/>검토·숨김·복구])
+      A3([회원 조회·삭제])
+      A4([뉴스 수집])
+    end
+    subgraph memberFeatures["회원 기능"]
+      direction LR
+      M1([여행 계획 관리<br/>작성·조회·수정·삭제])
+      M2([핫플레이스 관리<br/>등록·수정·삭제])
+      M3([충전 예약 관리<br/>예약·취소·내 예약])
+      M4([게시판 참여<br/>게시글·댓글 작성·수정·삭제])
+      M5([게시글 반응<br/>좋아요·북마크·신고])
+      M6([내 계정 관리<br/>정보·비밀번호 수정·탈퇴·로그아웃])
+    end
+    subgraph discovery["관광·정보 탐색"]
+      direction TB
+      U1([관광지 탐색<br/>검색·상세 정보])
+      U2([콘텐츠 열람<br/>핫플·뉴스·게시판·공지])
+      U3([충전소 탐색<br/>지도·검색])
+      U4([예약 몰림 시뮬레이션<br/>실행·결과 조회])
+      U5([회원 시작<br/>가입·로그인·비밀번호 재설정])
+    end
+  end
+
+  guest --- U1
+  guest --- U2
+  guest --- U3
+  guest --- U4
+  guest --- U5
+  member --- M1
+  member --- M2
+  member --- M3
+  member --- M4
+  member --- M5
+  member --- M6
+  admin --- A1
+  admin --- A2
+  admin --- A3
+  admin --- A4
+
+  classDef actor fill:#fff,stroke:#334155,stroke-width:2px,color:#0f172a
+  classDef public fill:#eff6ff,stroke:#3b82f6,stroke-width:1.6px,color:#0f172a
+  classDef memberCase fill:#ecfdf5,stroke:#10b981,stroke-width:1.6px,color:#0f172a
+  classDef adminCase fill:#f5f3ff,stroke:#8b5cf6,stroke-width:1.6px,color:#0f172a
+  class guest,member,admin actor
+  class U1,U2,U3,U4,U5 public
+  class M1,M2,M3,M4,M5,M6 memberCase
+  class A1,A2,A3,A4 adminCase
+  style system fill:#fff,stroke:#64748b,stroke-width:2px
+  style discovery fill:#f8fbff,stroke:#bfdbfe,stroke-width:1px
+  style memberFeatures fill:#f6fdf9,stroke:#a7f3d0,stroke-width:1px
+  style adminFeatures fill:#faf8ff,stroke:#ddd6fe,stroke-width:1px

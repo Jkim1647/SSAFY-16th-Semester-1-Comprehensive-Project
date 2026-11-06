@@ -1,0 +1,28 @@
+erDiagram
+  members ||--o{ plans : writes
+  members ||--o{ hotplaces : registers
+  members ||--o{ boards : writes
+  members ||--o{ ev_reservations : books
+  plans ||--|{ plan_stops : has
+  attractions ||--o{ plan_stops : visited
+  content_types ||--o{ attractions : classifies
+  signgu ||--o{ attractions : located
+  ev_stations ||--o{ ev_slots : "1h slots"
+  ev_stations ||--o{ ev_reservations : at
+  sim_runs ||--o{ ev_reservations : "run_id (0 = 실제 예약)"
+  ev_slots {
+    bigint run_id PK
+    varchar stat_id PK
+    datetime slot_start PK
+    int capacity "충전기 수"
+    int booked "확정 수 (FOR UPDATE 로 잠금)"
+  }
+  ev_reservations {
+    bigint reservation_id PK
+    bigint run_id
+    varchar stat_id FK
+    datetime slot_start
+    int charger_no "좌석 번호"
+    bigint member_id FK
+    varchar status
+  }

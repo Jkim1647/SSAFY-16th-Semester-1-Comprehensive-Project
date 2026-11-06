@@ -1,0 +1,9 @@
+flowchart LR
+  B[브라우저<br/>JSP 화면 + fetch] -->|요청 ?action=| C[Controller<br/>Servlet]
+  C -->|DTO| S[Service<br/>검증·트랜잭션·알고리즘]
+  S -->|DTO| D[DAO<br/>JDBC PreparedStatement]
+  D --> DB[(MySQL enjoytrip)]
+  C -->|request 속성 + forward| V[JSP View<br/>WEB-INF/views]
+  V --> B
+  S -.-> A[4회차 알고리즘<br/>RouteOptimizer · EvTripPlanner · PasswordHasher]
+  S -.-> Q[ReservationQueue<br/>Memory / Kafka]

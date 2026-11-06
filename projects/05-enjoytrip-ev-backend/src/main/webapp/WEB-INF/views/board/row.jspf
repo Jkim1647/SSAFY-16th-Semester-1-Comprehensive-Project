@@ -1,0 +1,6 @@
+<tr class="${b.hidden ? 'table-secondary' : (b.notice ? 'is-notice' : '')}">
+ <td><c:if test="${b.notice}"><span class="badge text-bg-primary">공지</span></c:if><c:if test="${b.hidden}"><span class="badge text-bg-secondary">숨김</span></c:if>
+ <c:forEach var="cat" items="${categories}"><c:if test="${cat.value == b.category}"><span class="small text-body-secondary"><c:out value="${cat.label}"/></span></c:if></c:forEach></td>
+ <td><a href="${root}/board?action=detail&amp;id=${b.boardId}&amp;${state}"><c:out value="${b.title}"/></a> <span class="small text-body-secondary">[${b.commentCount}]</span></td>
+ <td><c:out value="${b.writerName}"/></td><td>${fn:substring(b.createdAt,0,10)}</td><td>${b.viewCount}</td><td>${b.likeCount}</td>
+</tr>
